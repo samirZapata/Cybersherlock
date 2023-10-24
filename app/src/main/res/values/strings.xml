@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CBS_APP</string>
+    <string name="appTitle">SHERLOCK</string>
+    <string name="appDescription">Juntos contra el ciberacoso\n ¡Recopilemos pruebas, hagamos justicia!</string>
+    <string name="slogan">¡Juntos contra el ciberacoso!</string>
+    <string name="fpassword">¡Olvide la contraseña!</string>
+    <string name="loginTxt">LOGIN</string>
+    <string name="nUser">Nuevo usuario? Crear Cuenta</string>
+</resources>
