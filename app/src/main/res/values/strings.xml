@@ -5,5 +5,7 @@
     <string name="slogan">¡Juntos contra el ciberacoso!</string>
     <string name="fpassword">¡Olvide la contraseña!</string>
     <string name="loginTxt">LOGIN</string>
+    <string name="singUpTxt">INGRESAR</string>
     <string name="nUser">Nuevo usuario? Crear Cuenta</string>
+    <string name="loginOption">Ya tienes cuenta? Log-in</string>
 </resources>
