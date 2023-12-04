@@ -8,4 +8,7 @@
     <string name="singUpTxt">INGRESAR</string>
     <string name="nUser">Nuevo usuario? Crear Cuenta</string>
     <string name="loginOption">Ya tienes cuenta? Log-in</string>
+    <string name="mTitle">¡Hola! de nuevo.</string>
+    <string name="mText">Sabemos que la seguridad es importante\n\nEs por eso que queremos asegurarte que tus datos estan a salvo y se almacenan de forma anonima.\n\nGracias por elegirnos.</string>
+    <string name="btnMNext">Listo</string>
 </resources>

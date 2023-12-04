@@ -7,5 +7,6 @@
     <color name="linkColor">#000AFF</color>
     <color name="evidenceColor">#5D5FEF</color>
     <color name="generalBtnColor">#000000</color>
+    <color name="wmbackground">#E9ECEF</color>
     <color name="grey">#636363</color>
 </resources>

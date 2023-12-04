@@ -77,7 +77,7 @@ public class Login extends AppCompatActivity {
                     //String pass = object.getString("password");
                     //if (correo.equals(txtCorreo.getText().toString()) && pass.equals(txtPass.getText().toString())) {
                         Toast.makeText(Login.this, "¡Oh!, Has regresado", Toast.LENGTH_SHORT).show();
-                        Intent j = new Intent(Login.this, Sing_up.class);
+                        Intent j = new Intent(Login.this, WMiddle.class);
                         startActivity(j);
                     //} else {
 
