@@ -4,7 +4,7 @@ public class Network {
 
     /*YONIER'S IP C: 192.168.3.158
     * YONIER'S IP H: 192.168.0.8*/
-    final String apiSingUp = "192.168.0.8:9000/api/auth/singup";
+    final String apiSingUp = "http://192.168.20.27:9000/api/auth/singup";
     final String apiSinIn = "192.168.0.8:9000/api/auth/singin";
 
     public String getApiSingUp() {

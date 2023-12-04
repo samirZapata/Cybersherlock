@@ -22,6 +22,10 @@ import com.android.volley.toolbox.Volley;
 import com.usbbog.cbs_app.R;
 import com.usbbog.cbs_app.networking.Network;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,51 +67,56 @@ public class Sing_up extends AppCompatActivity {
 
 
         btnSingUp.setOnClickListener((View view)-> {
-            String nombre = edtNombre.getText().toString();
-            String edad = edtEdad.getText().toString();
-            String mail = edtEmail.getText().toString();
-            String genero = edtGenero.getText().toString();
-            String dni = edtDni.getText().toString();
-            String password = edtPassword.getText().toString();
-
-            sing_Up(nombre,edad, mail, genero, dni, password);
+            sing_Up(apiUrl);
         });
 
     }
 
-    private void sing_Up(String nombre, String edad, String mail, String genero, String dni, String password) {
+    private void sing_Up(String baseUrl) {
+        Log.i("URL ROUTE: ", baseUrl);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(Sing_up.this, "Se ha insertado", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error: ", error + "");
+            }
+        }){
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, apiUrl,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String res) {
-//
-                        Toast.makeText(Sing_up.this, "¡Usuario creado!", Toast.LENGTH_SHORT).show();
-                        System.out.print("-------------------------------------------------------------------------");
-                        System.out.print("RESPUESTA " + res);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Sing_up.this, error.getMessage() + "", Toast.LENGTH_LONG).show();
-                        System.out.print(error);
-                        Log.i("ERROR", error.getMessage());
-                    }
-                }) {
+            public String getBodyContentType(){
+                return "application/json; charset=utf-8";
+            }
 
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("nombre", nombre);
-                params.put("edad", edad);
-                params.put("email", mail);
-                params.put("genero", genero);
-                params.put("dni", dni);
-                params.put("password", password);
-                return params;
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    //CONSUMIR OBJETO JSON
+                    JSONObject jsonBody = new JSONObject();
+
+                    jsonBody.put("nombre", edtNombre.getText().toString());
+                    jsonBody.put("edad", edtEdad.getText().toString());
+                    jsonBody.put("correo", edtEmail.getText().toString());
+                    jsonBody.put("genero", edtGenero.getText().toString());
+                    jsonBody.put("dni", edtDni.getText().toString());
+                    jsonBody.put("password", edtPassword.getText().toString());
+
+                    //CONVERTIR OBJETO A BYTES
+                    return jsonBody.toString().getBytes("utf-8");
+
+                }catch (JSONException e){
+                    Log.e("ERROR: ", e + "");
+                    e.printStackTrace();
+                    return null;
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
             }
         };
-        requestQueue.add(postRequest);
+        RequestQueue RU = Volley.newRequestQueue(this);
+        RU.add(stringRequest);
     }
 
 }
