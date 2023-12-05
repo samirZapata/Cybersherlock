@@ -6,17 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".view.WMiddle"
     android:orientation="vertical"
-    android:backgroundTint="@color/wmbackground">
+    android:background="@color/wmbackground">
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="212dp"
+        android:layout_height="281dp"
+        android:layout_marginEnd="-5dp"
         android:src="@drawable/ic_wave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
-
 
     <ImageView
         android:id="@+id/imageView"
@@ -64,12 +64,12 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnCheck"
+        android:layout_width="144dp"
+        android:layout_height="53dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/generalBtnColor"
-        android:drawableStart="@drawable/ic_verify"
+        android:drawableLeft="@drawable/ic_verify"
         android:fontFamily="@font/montserrat_semi_bold"
         android:gravity="center"
         android:text="@string/btnMNext"

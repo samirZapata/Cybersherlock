@@ -11,4 +11,5 @@
     <string name="mTitle">¡Hola! de nuevo.</string>
     <string name="mText">Sabemos que la seguridad es importante\n\nEs por eso que queremos asegurarte que tus datos estan a salvo y se almacenan de forma anonima.\n\nGracias por elegirnos.</string>
     <string name="btnMNext">Listo</string>
+    <string name="title_activity_dash">Dash</string>
 </resources>
