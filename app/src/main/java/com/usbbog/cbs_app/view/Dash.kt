@@ -1,9 +1,13 @@
 package com.usbbog.cbs_app.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -36,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -47,9 +52,21 @@ import androidx.compose.ui.unit.sp
 import com.usbbog.cbs_app.R
 import com.usbbog.cbs_app.view.ui.theme.Cbs_appTheme
 
+
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+
+
+
 class Dash : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.setDecorFitsSystemWindows(false)
         setContent {
             DefaultPreview()
         }
@@ -58,13 +75,16 @@ class Dash : ComponentActivity() {
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
 fun DefaultPreview() {
 
     val genres = listOf("Casos", "Evidencias")
+    val vocabularios = listOf(R.string.vocabulario)
 
     Cbs_appTheme {
+        val navController = rememberNavController()
+        NavGraph(navController = navController)
         Scaffold {
             Column(
                     modifier = Modifier
@@ -81,33 +101,45 @@ fun DefaultPreview() {
                         append("Contra el ciberacoso")
                     }
                 })
+                /**
+                * INICIO
+                * CINTA OPCIONES SUPERIOR
+                */
                 LazyRow(
                         horizontalArrangement = Arrangement.spacedBy(10.dp),
                         modifier = Modifier.padding(bottom = 25.dp)
                 ) {
                     items(genres) { genre ->
-                        Genre(genre)
+                        Genre(genre, navController)
                     }
                 }
+                /**
+                 * INICIO
+                 * CAJAS INFORMATIVAS
+                 */
                 Box(
                         modifier = Modifier
                                 .padding(end = 20.dp)
                                 .clip(RoundedCornerShape(10))
                                 .background(Color.Black)
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
+                    /**
+                     * CARGUE DE CAJA INFORMATIVA
+                     *
+                     * INICIO
+                     */
+                    Row(verticalAlignment = Alignment.CenterVertically){
                         Column(
                                 modifier = Modifier
                                         .padding(vertical = 30.dp)
                                         .padding(start = 20.dp)
-                        ) {
+                        ){
                             Text(
                                     text = "Vocabulario",
                                     color = Color.White,
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Bold
                             )
-
                             Spacer(modifier = Modifier.size(10.dp))
 
                             Text(
@@ -116,13 +148,10 @@ fun DefaultPreview() {
                                             "para cualquier persona, \n" +
                                             "pero existen algunas medidas \n" +
                                             "que se pueden tomar para \n" +
-                                            "protegerse y prevenir esta situación. \n" +
-                                            "Algunas recomendaciones \n" +
-                                            "son las siguientes",
+                                            "protegerse y...",
                                     color = Color.White,
                                     fontSize = 14.sp
                             )
-
                             Spacer(modifier = Modifier.size(40.dp))
 
                             Button(
@@ -134,7 +163,7 @@ fun DefaultPreview() {
                                             containerColor = Color.White,
                                             contentColor = Color.Blue
                                     )
-                            ) {
+                            ){
                                 Text(
                                         text = "Ver mas",
                                         color = Color.Blue,
@@ -157,19 +186,26 @@ fun DefaultPreview() {
                 LazyColumn(
                         modifier = Modifier.padding(end = 20.dp),
                         verticalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    //ESTO CARGA EL LISTADO DE EVIDENCIAS
+                ){
+                    /**
+                     * CARGUE DE LISTADO DE EVIDENCIAS
+                     * */
+
                     items(3) {
                         Evidencias()
                     }
-                }
 
+                }
             }
         }
     }
 }
 
-//FUNCION PARA LAS EVIDENCIAS
+
+/**
+ * INICIO
+ * FUNCION PARA CAJAS DE EVIDENCIAS
+ * */
 @Composable
 fun Evidencias() {
 
@@ -209,7 +245,7 @@ fun Evidencias() {
             Column(
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.CenterHorizontally,
-            ){
+            ) {
                 Text(
                         text = "Evidencia 01",
                         color = Color.Black,
@@ -231,7 +267,7 @@ fun Evidencias() {
                 Icon(
                         imageVector = Icons.Filled.KeyboardArrowRight,
                         contentDescription = "icon",
-                        tint = if(isSelected) Color.Blue else Color.Black,
+                        tint = if (isSelected) Color.Blue else Color.Black,
                         modifier = Modifier.size(32.dp)
                 )
             }
@@ -241,8 +277,32 @@ fun Evidencias() {
 
 }
 
+/**
+ * INICIO
+ * FUNCION PARA VALIDAR BOTONES SUPERIORES
+ * */
+
+sealed class Screen(val route: String){
+    object Casos : Screen("casos")
+    object Evidencias : Screen("evidencias")
+}
+
 @Composable
-fun Genre(text: String) {
+fun NavGraph(navController: NavHostController) {
+
+    NavHost(
+            navController = navController,
+            startDestination = Screen.Casos.route
+    ){
+        composable(Screen.Casos.route){
+            //val intent = Intent(LocalContext.current, Casos::class.java)
+            //LocalContext.current.startActivity(intent)
+        }
+    }
+}
+
+@Composable
+fun Genre(text: String, navController: NavController) {
     var isSelected by remember { mutableStateOf(false) }
     Box(
             modifier = Modifier
@@ -250,6 +310,15 @@ fun Genre(text: String) {
                     .background(if (isSelected) Color.Black else colorResource(id = R.color.btnDash))
                     .clickable {
                         isSelected = !isSelected
+
+                        //NAVEGAR A LA PANTALLA DESEADA
+                        if (isSelected) {
+                            when (text) {
+                                "Casos" -> navController.navigate(Screen.Casos.route)
+
+                            }
+                        }
+
                     },
             contentAlignment = Alignment.Center
     ) {
@@ -261,4 +330,50 @@ fun Genre(text: String) {
                 fontWeight = FontWeight.Bold
         )
     }
+}
+
+@Composable
+fun Vocabulario(text: String) {
+
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Column(
+                modifier = Modifier
+                        .padding(vertical = 30.dp)
+                        .padding(start = 20.dp)
+        ) {
+            Text(
+                    text = "Vocabulario",
+                    color = Color.White,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+            )
+
+            Spacer(modifier = Modifier.size(10.dp))
+
+            Text(
+                    text = text,
+                    color = Color.White,
+                    fontSize = 14.sp
+            )
+
+            Spacer(modifier = Modifier.size(40.dp))
+
+            Button(
+                    modifier = Modifier
+                            .size(height = 35.dp, width = 100.dp)
+                            .clip(RoundedCornerShape(20)),
+                    onClick = {}, //BOTON DE CAJA INFORMATIVA
+                    colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color.Blue
+                    )
+            ) {
+                Text(
+                        text = "Ver mas",
+                        color = Color.Blue,
+                        fontSize = 14.sp
+                )
+            }
+        }
+    }//FIN CAJA INFORMATIVA
 }

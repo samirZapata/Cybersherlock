@@ -1,5 +1,9 @@
 import org.apache.tools.ant.util.JavaEnvUtils.VERSION_1_8
 
+
+
+
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -62,6 +66,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("com.android.support:support-annotations:28.0.0")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.6")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.android.material:compose-theme-adapter:1.2.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -73,5 +78,7 @@ dependencies {
     implementation ("androidx.compose.ui:ui:1.5.4")
     implementation ("androidx.compose.material3:material3:1.1.2")
     implementation ("androidx.compose.ui:ui-text")
+    implementation ("androidx.navigation:navigation-compose:2.4.0-alpha10")
+
 
 }

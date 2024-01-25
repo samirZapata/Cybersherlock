@@ -24,7 +24,7 @@ public class WMiddle extends AppCompatActivity {
         btnListo = findViewById(R.id.btnCheck);
 
         btnListo.setOnClickListener((View view)->{
-            Intent i = new Intent(WMiddle.this, DashKt.class);
+            Intent i = new Intent(WMiddle.this, Dash.class);
             this.startActivity(i);
         });
     }
