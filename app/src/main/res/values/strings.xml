@@ -21,4 +21,10 @@
                             "protegerse y prevenir esta situación. \n" +
                             "Algunas recomendaciones \n" +
                             "son las siguientes...</string>
+    <string name="tusCasos">Estos son tus casos actualmente, recuerda que\n
+        "tu información esta totalmente protegida y se \n"
+        "almacena de forma anónima."
+    </string>
+    <string name="ejemploCaso">Descripción\n"breve del caso..."</string>
+    <string name="verMasBTN">Ver mas...</string>
 </resources>
