@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.usbbog.cbs_app.R;
+import com.usbbog.cbs_app.model.Cases;
+
+import java.util.List;
 
 public class Casos extends AppCompatActivity {
     private static final String TAG = "Casos";
@@ -29,4 +32,7 @@ public class Casos extends AppCompatActivity {
 
 
     }
+
+    private List<Cases>
+
 }
