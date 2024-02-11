@@ -33,6 +33,6 @@ public class Casos extends AppCompatActivity {
 
     }
 
-    private List<Cases>
+
 
 }

@@ -2,6 +2,7 @@ package com.usbbog.cbs_app.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -68,19 +69,29 @@ public class Login extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
-
-
                     //JSONObject object = new JSONObject();
-
                     //VERIFICACION DEL TOKEN
                     //String correo = object.getString("correo");
                     //String pass = object.getString("password");
                     //if (correo.equals(txtCorreo.getText().toString()) && pass.equals(txtPass.getText().toString())) {
-                        Toast.makeText(Login.this, "¡Oh!, Has regresado", Toast.LENGTH_SHORT).show();
-                        Intent j = new Intent(Login.this, WMiddle.class);
-                        startActivity(j);
-                    //} else {
+                        Toast.makeText(Login.this, "Bienveni@", Toast.LENGTH_SHORT).show();
 
+                        SharedPreferences sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
+                        boolean primerIngreso = sharedPreferences.getBoolean("primer_ingreso", false);
+
+                        if (primerIngreso){
+                            Intent a = new Intent(Login.this, Dashboard.class);
+                            startActivity(a);
+                        }else {
+                            Intent b = new Intent(Login.this, WMiddle.class);
+                            startActivity(b);
+                        }
+
+                        SharedPreferences.Editor editor  = sharedPreferences.edit();
+                        editor.putBoolean("primer_ingreso", true);
+                        editor.apply();
+
+                    //} else {
                    // }
                 } catch (Exception e) {
                     Toast.makeText(Login.this, "¡Credenciales incorrectas!", Toast.LENGTH_SHORT).show();
@@ -111,6 +122,7 @@ public class Login extends AppCompatActivity {
             public byte[] getBody() throws AuthFailureError {
                 try {
 
+                    //OBTENGO DATOS
                     JSONObject jsonBody = new JSONObject();
                     jsonBody.put("correo", txtCorreo.getText().toString());
                     jsonBody.put("password", txtPass.getText().toString());

@@ -27,4 +27,9 @@
     </string>
     <string name="ejemploCaso">Descripción\n"breve del caso..."</string>
     <string name="verMasBTN">Ver mas...</string>
+    <string name="consultarBTN">Consultar...</string>
+    <string name="vTitle">Tips que\nte pueden servir</string>
+    <string name="vDesc">Queremos que tomes el control de tu seguridad lo mas pronto posible.</string>
+    <string name="evidenciasTitle">MIS EVIDENCIAS</string>
+    <string name="vAllTitle">Ver Todo</string>
 </resources>

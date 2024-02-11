@@ -17,26 +17,30 @@
             android:layout_height="?actionBarSize">
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/circe"
-                android:padding="8dp"
-                android:layout_centerVertical="true"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="#fff"
+                android:padding="29dp"
+                app:cardCornerRadius="200dp"
+                app:cardElevation="0dp">
 
-            <TextView
-                android:layout_width="205dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="31dp"
-                android:layout_marginEnd="131dp"
-                android:layout_marginRight="200dp"
-                android:layout_marginBottom="6dp"
-                android:padding="15dp"
-                android:fontFamily="@font/montserrat_semi_bold"
-                android:textSize="14sp"
-                android:text="Samantha Smith" />
+                <TextView
+                    android:id="@+id/viewUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
+                    android:text="K"
+                    android:textColor="#63000000"
+                    android:textSize="20dp" />
+
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 
