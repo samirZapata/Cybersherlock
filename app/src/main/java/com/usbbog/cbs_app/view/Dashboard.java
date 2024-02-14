@@ -58,6 +58,11 @@ public class Dashboard extends AppCompatActivity {
             //Intent goEvidencias = new Intent(Dashboard.this, Evidencias.class);
             //startActivity(goEvidencias);
         });
+
+        txtUser.setOnClickListener((View view)->{
+            Intent goPerfil = new Intent(Dashboard.this, Perfil.class);
+            startActivity(goPerfil);
+        });
     }
 
 

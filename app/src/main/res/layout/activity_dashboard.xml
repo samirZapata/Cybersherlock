@@ -19,7 +19,7 @@
             android:layout_height="62dp"
             android:layout_marginLeft="13dp"
             android:layout_marginTop="5dp"
-            android:backgroundTint="#fff"
+            android:backgroundTint="#f5f5f5"
             android:padding="29dp"
             app:cardCornerRadius="200dp"
             app:cardElevation="0dp">
@@ -27,7 +27,7 @@
             <TextView
                 android:id="@+id/viewUserName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
