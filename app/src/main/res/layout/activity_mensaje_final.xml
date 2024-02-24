@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.MensajeFinal"
+    android:background="@color/white"
+    android:padding="30dp"
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check"
+            android:layout_gravity="center"
+            android:layout_marginTop="180dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:textSize="40sp"
+            android:textAllCaps="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/secondary"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/okDesc"
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat_medium"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loginTxt"
+            android:drawableLeft="@drawable/ic_verify"
+            android:backgroundTint="@color/generalBtnColor"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -9,5 +9,7 @@
     <color name="generalBtnColor">#000000</color>
     <color name="wmbackground">#E9ECEF</color>
     <color name="grey">#636363</color>
+    <color name="secondary">#050316</color>
+    <color name="terciary">#F9F9F9</color>
     <color name="btnDash">#F9F9F9</color>
 </resources>

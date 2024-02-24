@@ -28,7 +28,23 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+*                                .-"``"-.
+                                /______; \
+                               {_______}\|
+                               (/ a a \)(_)
+                               (.-.).-.)
+  _______________________ooo__(    ^    )___________________________
+ /                             '-.___.-'                            \
+|    RECOPILEMOS PRUEBAS, HAGAMOS JUSTICIA                           |
+ \________________________________________ooo_______________________/
+                               |_  |  _|
+                               \___|___/
+                               {___|___}
+                                |_ | _|
+                                /-'Y'-\
+                               (__/ \__)
+* */
 public class Sing_up extends AppCompatActivity {
 
 
@@ -68,6 +84,8 @@ public class Sing_up extends AppCompatActivity {
 
         btnSingUp.setOnClickListener((View view)-> {
             sing_Up(apiUrl);
+
+
         });
 
     }
@@ -77,7 +95,11 @@ public class Sing_up extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(Sing_up.this, "Se ha insertado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Sing_up.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+
+                Intent a = new Intent(Sing_up.this, Login.class);
+                startActivity(a);
+
             }
         }, new Response.ErrorListener() {
             @Override

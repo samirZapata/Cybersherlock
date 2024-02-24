@@ -3,7 +3,6 @@ import org.apache.tools.ant.util.JavaEnvUtils.VERSION_1_8
 
 
 
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -81,6 +80,7 @@ dependencies {
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation ("com.intuit.sdp:sdp-android:1.0.6")
     implementation ("com.airbnb.android:lottie:5.2.0")
+    implementation ("io.github.chaosleung:pinview:1.4.4")
 
 
 }

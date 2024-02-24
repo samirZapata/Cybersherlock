@@ -27,10 +27,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-
+/*
+*                                .-"``"-.
+                                /______; \
+                               {_______}\|
+                               (/ a a \)(_)
+                               (.-.).-.)
+  _______________________ooo__(    ^    )___________________________
+ /                             '-.___.-'                            \
+|    RECOPILEMOS PRUEBAS, HAGAMOS JUSTICIA                           |
+ \________________________________________ooo_______________________/
+                               |_  |  _|
+                               \___|___/
+                               {___|___}
+                                |_ | _|
+                                /-'Y'-\
+                               (__/ \__)
+* */
 public class Login extends AppCompatActivity {
 
-    Button btnLogin, btnSingUp;
+    Button btnLogin, btnSingUp, btnFPass;
     EditText txtCorreo, txtPass;
 
     private Network url = new Network();
@@ -49,6 +65,7 @@ public class Login extends AppCompatActivity {
         btnSingUp = findViewById(R.id.btnNUser);
         txtCorreo = findViewById(R.id.edtUserlg);
         txtPass = findViewById(R.id.edtPasslg);
+        btnFPass = findViewById(R.id.fpass);
 
         btnSingUp.setOnClickListener((View view) -> {
             Intent i = new Intent(Login.this, Sing_up.class);
@@ -57,6 +74,11 @@ public class Login extends AppCompatActivity {
 
         btnLogin.setOnClickListener((View view) -> {
             sing_In(apiUrl);
+        });
+
+        btnFPass.setOnClickListener((View view)->{
+            Intent a = new Intent(Login.this, OlvidarContrasena.class);
+            startActivity(a);
         });
 
     }

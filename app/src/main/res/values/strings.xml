@@ -4,14 +4,23 @@
     <string name="appDescription">Juntos contra el ciberacoso\n ¡Recopilemos pruebas, hagamos justicia!</string>
     <string name="slogan">¡Juntos contra el ciberacoso!</string>
     <string name="fpassword">¡Olvide la contraseña!</string>
+    <string name="rpassword">¡Recuperar Contraseña!</string>
+    <string name="ok">¡Todo esta listo!</string>
+    <string name="okDesc">¡Tu contraseña ha sido\nreestablecida con éxito!</string>
+    <string name="rpassword_detail">¡Escribe tu correo para poder reestablecer tu contraseña!</string>
     <string name="loginTxt">LOGIN</string>
-    <string name="singUpTxt">INGRESAR</string>
+    <string name="singUpTxt">REGISTRAME</string>
     <string name="nUser">Nuevo usuario? Crear Cuenta</string>
     <string name="loginOption">Ya tienes cuenta? Log-in</string>
     <string name="mTitle">¡Hola! de nuevo.</string>
     <string name="mText">Sabemos que la seguridad es importante\n\nEs por eso que queremos asegurarte que tus datos estan a salvo y se almacenan de forma anonima.\n\nGracias por elegirnos.</string>
     <string name="btnMNext">Listo</string>
+    <string name="nextBtn">Siguiente</string>
+    <string name="verificacionOne">¡Codigo de Verificación!</string>
+    <string name="newCredentials">¡Nueva Contraseña!</string>
     <string name="title_activity_dash">Dash</string>
+    <string name="verificacionTwo">Escribe el codigo enviado a </string>
+    <string name="newCredentialsDesc">Hemos verificado tu identidad ahora\nEstablece tu nueva contraseña</string>
 
     <string name="vocabulario">El ciberacoso puede ser\n" +
                             "una experiencia traumática \n" +
