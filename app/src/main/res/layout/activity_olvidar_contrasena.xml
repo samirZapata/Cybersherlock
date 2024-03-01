@@ -93,12 +93,13 @@
 
         <Button
             android:id="@+id/btnNextOne"
-            android:layout_width="150dp"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:text="@string/nextBtn"
             android:fontFamily="@font/montserrat_semi_bold"
             android:textColor="@color/white"
             android:backgroundTint="@color/generalBtnColor"
+            android:drawableRight="@drawable/ic_next"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_marginTop="50dp"/>

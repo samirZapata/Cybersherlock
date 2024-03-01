@@ -1,19 +1,43 @@
 package com.usbbog.cbs_app.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.usbbog.cbs_app.R;
+
+
+/*
+*                                .-"``"-.
+                                /______; \
+                               {_______}\|
+                               (/ a a \)(_)
+                               (.-.).-.)
+  _______________________ooo__(    ^    )___________________________
+ /                             '-.___.-'                            \
+|    RECOPILEMOS PRUEBAS, HAGAMOS JUSTICIA                           |
+ \________________________________________ooo_______________________/
+                               |_  |  _|
+                               \___|___/
+                               {___|___}
+                                |_ | _|
+                                /-'Y'-\
+                               (__/ \__)
+* */
 
 public class CambiarContrasena extends AppCompatActivity {
 
     ImageView btnBack;
+    Button btnFinish;
+    EditText passOne, passConfirm;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,6 +48,9 @@ public class CambiarContrasena extends AppCompatActivity {
 
         //HOOKS START------------------------------------
             btnBack = findViewById(R.id.btnBackThree);
+            btnFinish = findViewById(R.id.btnLoginFP);
+            passOne = findViewById(R.id.edtNuevaContrasena);
+            passConfirm = findViewById(R.id.edtCNuevaContrasena);
         //HOOKS END--------------------------------------
 
 
@@ -32,5 +59,16 @@ public class CambiarContrasena extends AppCompatActivity {
             Intent a = new Intent(CambiarContrasena.this, CambiarContrasena.class);
             startActivity(a);
         });
+
+        btnFinish.setOnClickListener((View view)->{
+            Intent b = new Intent(CambiarContrasena.this, MensajeFinal.class);
+            startActivity(b);
+        });
     }
+
+
+    private void cambiarContrasena(){
+
+    }
+
 }

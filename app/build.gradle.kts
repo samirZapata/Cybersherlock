@@ -1,8 +1,6 @@
 import org.apache.tools.ant.util.JavaEnvUtils.VERSION_1_8
 
 
-
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -56,7 +54,7 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.android.volley:volley:1.2.1")
-    implementation("androidx.compose.ui:ui-tooling-preview-android:1.6.1")
+    implementation("androidx.compose.ui:ui-tooling-preview-android:1.6.2")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
     implementation(platform("androidx.compose:compose-bom:2023.10.01"))
@@ -66,6 +64,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("com.android.support:support-annotations:28.0.0")
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
+    implementation("androidx.annotation:annotation:1.7.1")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.android.material:compose-theme-adapter:1.2.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -74,13 +73,14 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation ("androidx.compose.ui:ui:1.6.1")
+    implementation ("androidx.compose.ui:ui:1.6.2")
     implementation ("androidx.compose.material3:material3:1.2.0")
     implementation ("androidx.compose.ui:ui-text")
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation ("com.intuit.sdp:sdp-android:1.0.6")
     implementation ("com.airbnb.android:lottie:5.2.0")
     implementation ("io.github.chaosleung:pinview:1.4.4")
-
+    implementation ("com.google.code.gson:gson:2.10")
+    
 
 }

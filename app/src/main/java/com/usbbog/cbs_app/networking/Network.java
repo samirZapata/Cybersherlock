@@ -14,4 +14,12 @@ public class Network {
     public String getApiSinIn() {
         return apiSinIn;
     }
+    public String getApiResetPassword(String email){
+        return "http://192.168.20.27:9000/api/auth/resetPassword/" + email;
+    }
+
+    public String getApiOtp(int code){
+        return  "http://192.168.20.27:9000/api/auth/verificarCodigo/" + code;
+    }
+
 }
