@@ -26,9 +26,14 @@ import com.usbbog.cbs_app.R;
 import com.usbbog.cbs_app.networking.Network;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /*
 *                                .-"``"-.
                                 /______; \
@@ -105,22 +110,69 @@ public class VerificacionOTP extends AppCompatActivity {
     }
 
 
+    /**
+     * Clase HeaderUtil
+     *
+     * Encapsula un método para analizar los cabeceros de respuesta HTTP y devolverlos como un mapa de Strings a listas de Strings.
+     */
+    public class HeaderUtil {
+        /**
+         * parseHeaders
+         *
+         * Divide la representación en texto plano de los cabeceros HTTP en nombre y valor, y los devuelve como un mapa de nombres a listas de valores.
+         *
+         * @param headerString Representación en texto plano de los cabeceros HTTP
+         * @return Mapa de nombres de cabeceros a listas de sus respectivos valores
+         */
+        public Map<String, List<String>> parseHeaders(String headerString) {
+            // Compila un patrón regular que coincide con la forma de los cabeceros individuales
+            Pattern pattern = Pattern.compile("(\\w+): (\\S.*)$", Pattern.MULTILINE);
+
+            // Busca todos los cabeceros que coincidan con el patrón
+            Matcher matcher = pattern.matcher(headerString);
+
+            // Crea un diccionario vacío para almacenar los cabeceros
+            Map<String, List<String>> headers = new LinkedHashMap<>();
+
+            // Iterar sobre todos los cabeceros encontrados
+            while (matcher.find()) {
+                // Extrae el nombre y el valor del cabecero actual
+                String name = matcher.group(1);
+                String value = matcher.group(2);
+
+                // Si el nombre del cabecero no existe en el diccionario, crea una lista vacía y la asocia con él
+                List<String> values = headers.computeIfAbsent(name, k -> new ArrayList<>());
+
+                // Añade el valor actual al conjunto de valores asociados con el nombre del cabecero
+                values.add(value);
+            }
+
+            // Devuelve el diccionario de cabeceros
+            return headers;
+        }
+    }
+
+
+
     private void otp(String baseUrl){
         JsonObject otpJson = new JsonObject();
-        otpJson.addProperty("correo", "<el correo electrónico del usuario>");
         otpJson.addProperty("codigo", Integer.parseInt(otpCode));
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (response.contains("Codigo correcto")) {
-                    // Redirecciona a la próxima pantalla si el código es correcto
+
+                try {
+
+                    Toast.makeText(VerificacionOTP.this, "Codigo correcto", Toast.LENGTH_SHORT).show();
                     Intent b = new Intent(VerificacionOTP.this, CambiarContrasena.class);
                     startActivity(b);
-                } else {
-                    Toast.makeText(VerificacionOTP.this, "Código incorrecto.", Toast.LENGTH_SHORT).show();
+
+                }catch (Exception e){
+                    Log.e("ERROR EN EL BLOQUE onResponse: ", Arrays.toString(e.getStackTrace()) + "");
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
