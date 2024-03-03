@@ -1,13 +1,27 @@
-package com.usbbog.cbs_app.model;
+package com.usbbog.cbs_app.modelHelper;
 
-public class Users {
+public class Holder {
 
     private String nombre;
     private int edad;
-    private String correo;
+    private String correo = "";
     private String genero;
     private int dni;
     private String password;
+
+
+    public Holder(String nombre, int edad, String correo, String genero, int dni, String password) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.correo = correo;
+        this.genero = genero;
+        this.dni = dni;
+        this.password = password;
+    }
+
+    public Holder() {
+
+    }
 
     public String getNombre() {
         return nombre;
@@ -70,12 +84,5 @@ public class Users {
                 '}';
     }
 
-    public Users(String nombre, int edad, String correo, String genero, int dni, String password) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.correo = correo;
-        this.genero = genero;
-        this.dni = dni;
-        this.password = password;
-    }
+
 }

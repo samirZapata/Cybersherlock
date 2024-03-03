@@ -23,6 +23,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.usbbog.cbs_app.R;
+import com.usbbog.cbs_app.modelHelper.Holder;
+import com.usbbog.cbs_app.modelHelper.MailHolder;
 import com.usbbog.cbs_app.networking.Network;
 
 import org.json.JSONException;
@@ -64,6 +66,7 @@ public class OlvidarContrasena extends AppCompatActivity {
     private String apiUrl = url.getApiResetPassword("");
     private RequestQueue requestQueue;
     boolean checkComplete, hasSentCode = false;
+    Holder mailHolder = new Holder();
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -110,6 +113,8 @@ public class OlvidarContrasena extends AppCompatActivity {
                 resetPassword(apiUrl);
                 hasSentCode = true;
             }
+            MailHolder.getInstance().setHolder(mailHolder);
+            System.out.println("CORREO ENVIADO: " + mailHolder.getCorreo());
             Intent b = new Intent(OlvidarContrasena.this, VerificacionOTP.class);
             startActivity(b);
         });
@@ -198,8 +203,6 @@ public class OlvidarContrasena extends AppCompatActivity {
 
                 //VERIFICA SI EL ERROR ES UN 401
                 if (error instanceof AuthFailureError) {
-                    Toast.makeText(OlvidarContrasena.this, "¡Correo incorrecto!", Toast.LENGTH_SHORT).show();
-                } else {
                     Toast.makeText(OlvidarContrasena.this, "¡Correo incorrecto!", Toast.LENGTH_SHORT).show();
                 }
 

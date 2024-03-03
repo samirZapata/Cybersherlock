@@ -26,6 +26,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
 import com.usbbog.cbs_app.R;
+import com.usbbog.cbs_app.modelHelper.Holder;
+import com.usbbog.cbs_app.modelHelper.MailHolder;
 import com.usbbog.cbs_app.networking.Network;
 
 import org.json.JSONException;
@@ -60,6 +62,8 @@ public class CambiarContrasena extends AppCompatActivity {
     TextInputLayout layoutPass;
     private Network url = new Network();
     private String apiUrl = url.getApiUpdatePassword();
+    Holder getMail = new Holder();
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -76,6 +80,8 @@ public class CambiarContrasena extends AppCompatActivity {
             layoutPass = findViewById(txtLayoutPassConfirm);
         //HOOKS END--------------------------------------
 
+
+        //System.out.println("CORREO RECIBIDO: " + getMail.getCorreo());
 
 
         btnBack.setOnClickListener((View view)->{
@@ -121,7 +127,8 @@ public class CambiarContrasena extends AppCompatActivity {
     private void cambiarContrasena(String baseUrl){
 
         Log.i("URL ROUTE: ", baseUrl.substring(baseUrl.indexOf("/api")));
-
+        getMail = MailHolder.getInstance().getHolder();
+        System.out.println("CORREO QUE LLEGA: " + getMail.getCorreo());
         StringRequest request = new StringRequest(Request.Method.POST, baseUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -138,6 +145,7 @@ public class CambiarContrasena extends AppCompatActivity {
             }
         }){
             public String getBodyContentType(){
+
                 return "application/json; charset=utf-8";
             }
 
@@ -145,7 +153,8 @@ public class CambiarContrasena extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject();
 
-                    jsonObject.put("password", passOne.getText().toString());
+                    jsonObject.put("correo", getMail.getCorreo());
+                    jsonObject.put("newPassword", passOne.getText().toString());
                     return jsonObject.toString().getBytes("utf-8");
 
                 } catch (JSONException | UnsupportedEncodingException e) {
