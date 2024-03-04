@@ -43,8 +43,9 @@ public class Holder {
         return correo;
     }
 
-    public void setCorreo(String correo) {
+    public Holder setCorreo(String correo) {
         this.correo = correo;
+        return null;
     }
 
     public String getGenero() {

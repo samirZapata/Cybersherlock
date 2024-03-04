@@ -63,7 +63,7 @@ public class OlvidarContrasena extends AppCompatActivity {
     EditText txtCorreo;
 
     private Network url = new Network();
-    private String apiUrl = url.getApiResetPassword("");
+    private String apiUrl = ""; //url.getApiResetPassword("");
     private RequestQueue requestQueue;
     boolean checkComplete, hasSentCode = false;
     Holder mailHolder = new Holder();
@@ -81,8 +81,8 @@ public class OlvidarContrasena extends AppCompatActivity {
         txtCorreo = findViewById(R.id.edtRecuperarCorreo);
         //HOOKS END-------------------------------------------
 
-        apiUrl = url.getApiResetPassword(txtCorreo.getText().toString());
-
+        //apiUrl = url.getApiResetPassword(txtCorreo.getText().toString());
+        apiUrl = url.getApiResetPassword("");
 
         btnBack.setOnClickListener((View view)->{
             Intent a = new Intent(OlvidarContrasena.this, Login.class);
@@ -113,7 +113,7 @@ public class OlvidarContrasena extends AppCompatActivity {
                 resetPassword(apiUrl);
                 hasSentCode = true;
             }
-            MailHolder.getInstance().setHolder(mailHolder);
+            MailHolder.getInstance().setHolder(mailHolder.setCorreo(txtCorreo.getText().toString()));
             System.out.println("CORREO ENVIADO: " + mailHolder.getCorreo());
             Intent b = new Intent(OlvidarContrasena.this, VerificacionOTP.class);
             startActivity(b);
