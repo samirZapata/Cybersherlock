@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.DetalleCasos"
+            android:exported="false" />
+        <activity
             android:name=".view.MensajeFinal"
             android:exported="false" />
         <activity
@@ -46,7 +49,7 @@
         <activity
             android:name=".view.Login"
             android:exported="false"
-            android:noHistory="true"/>
+            android:noHistory="true" />
         <activity
             android:name=".view.MainActivity"
             android:exported="true">

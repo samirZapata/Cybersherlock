@@ -1,15 +1,15 @@
 package com.usbbog.cbs_app.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.usbbog.cbs_app.R;
 
@@ -62,6 +62,11 @@ public class Dashboard extends AppCompatActivity {
         txtUser.setOnClickListener((View view)->{
             Intent goPerfil = new Intent(Dashboard.this, Perfil.class);
             startActivity(goPerfil);
+        });
+
+        txtVerTodo.setOnClickListener((View view)->{
+            Intent goEvidencias = new Intent(Dashboard.this, Casos.class);
+            startActivity(goEvidencias);
         });
     }
 
