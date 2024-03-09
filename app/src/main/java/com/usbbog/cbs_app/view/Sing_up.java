@@ -83,12 +83,20 @@ public class Sing_up extends AppCompatActivity {
 
 
         btnSingUp.setOnClickListener((View view)-> {
-            sing_Up(apiUrl);
-
+            //if(validacion()) {
+                sing_Up(apiUrl);
+            //}
 
         });
 
     }
+    //Método validación de campos
+    /*private boolean validacion(){
+        String name = edtNombre.getText().toString();
+        String age = edtEdad.getText().toString();
+        String email = edtEmail.getText().toString();
+
+    }*/
 
     private void sing_Up(String baseUrl) {
         Log.i("URL ROUTE: ", baseUrl);

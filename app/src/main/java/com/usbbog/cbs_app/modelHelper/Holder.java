@@ -24,6 +24,7 @@ public class Holder {
     }
 
     public String getNombre() {
+
         return nombre;
     }
 
@@ -32,42 +33,53 @@ public class Holder {
     }
 
     public int getEdad() {
+
         return edad;
     }
 
     public void setEdad(int edad) {
+
         this.edad = edad;
     }
 
     public String getCorreo() {
+
         return correo;
     }
 
-    public void setCorreo(String correo) {
+    public Holder setCorreo(String correo) {
+
         this.correo = correo;
+        return null;
     }
 
     public String getGenero() {
+
         return genero;
     }
 
     public void setGenero(String genero) {
+
         this.genero = genero;
     }
 
     public int getDni() {
+
         return dni;
     }
 
     public void setDni(int dni) {
+
         this.dni = dni;
     }
 
     public String getPassword() {
+
         return password;
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.Pasos_importar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:elevation="200dp"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/lista_pasos"
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="10dp"
+            android:text="Pasos para importar la evidencia"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_marginStart="50dp" />
+
+        <TextView
+            android:id="@+id/punto_uno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_horizontal"
+            android:text="1. Ir a configuraciones "
+            android:drawableRight="@drawable/setting"
+            android:textColor="@color/textColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nuevoCaso" />
+
+        <TextView
+            android:id="@+id/punto_dos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="2. Elige la opción chats  "
+            android:drawableRight="@drawable/chat"
+            android:textColor="@color/textColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nuevoCaso" />
+
+        <TextView
+            android:id="@+id/punto_tres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="3. Elige la opción de exportar chat "
+            android:drawableRight="@drawable/ic_file"
+            android:textColor="@color/textColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nuevoCaso" />
+
+        <TextView
+            android:id="@+id/punto_cuatro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="right"
+            android:text="4. Elegir el chat que se desea exportar y seleccionar la opción de adjuntar archivo "
+            android:drawableRight="@drawable/ic_importar"
+            android:textColor="@color/textColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nuevoCaso" />
+
+        <TextView
+            android:id="@+id/punto_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_marginTop="20dp"
+            android:text="5. Una vez se haya completado el proceso, guardar el archivo en alguna carpeta del dispositivo para luego subirlo a la aplicación"
+            android:drawableRight="@drawable/zip"
+            android:textColor="@color/textColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lista_pasos" />
+
+        <TextView
+            android:id="@+id/punto_seis"
+            android:layout_width="365dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/grey"
+            android:text="6. Una vez realizado el proceso, regresar y oprimir el boton importar"
+            android:drawableRight="@drawable/export"/>
+
+        <Button
+            android:id="@+id/btn_listo"
+            android:layout_width="148dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/generalBtnColor"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:gravity="center"
+            android:text="Listo"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Descripcion" />
+
+    </LinearLayout>
+</ScrollView>

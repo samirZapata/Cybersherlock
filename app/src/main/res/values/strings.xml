@@ -21,6 +21,7 @@
     <string name="title_activity_dash">Dash</string>
     <string name="verificacionTwo">Escribe el codigo enviado a </string>
     <string name="newCredentialsDesc">Hemos verificado tu identidad ahora\nEstablece tu nueva contraseña</string>
+    <string name="back_button">Vuelve atás</string>
 
     <string name="vocabulario">El ciberacoso puede ser\n" +
                             "una experiencia traumática \n" +

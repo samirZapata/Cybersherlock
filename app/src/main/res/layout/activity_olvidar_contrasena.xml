@@ -21,11 +21,12 @@
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
-            android:padding="5dp"
             android:clickable="true"
+            android:padding="15dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="@string/back_button"
             />
-        
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

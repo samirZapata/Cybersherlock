@@ -81,6 +81,9 @@ dependencies {
     implementation ("com.airbnb.android:lottie:5.2.0")
     implementation ("io.github.chaosleung:pinview:1.4.4")
     implementation ("com.google.code.gson:gson:2.10")
-    
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
 }

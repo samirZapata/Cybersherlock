@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -57,13 +59,12 @@ import java.util.regex.Pattern;
 * */
 public class OlvidarContrasena extends AppCompatActivity {
 
-
     Button btnNext;
     ImageView btnBack;
     EditText txtCorreo;
 
     private Network url = new Network();
-    private String apiUrl = url.getApiResetPassword("");
+    private String apiUrl = "";//url.getApiResetPassword("");
     private RequestQueue requestQueue;
     boolean checkComplete, hasSentCode = false;
     Holder mailHolder = new Holder();
@@ -81,15 +82,14 @@ public class OlvidarContrasena extends AppCompatActivity {
         txtCorreo = findViewById(R.id.edtRecuperarCorreo);
         //HOOKS END-------------------------------------------
 
-        apiUrl = url.getApiResetPassword(txtCorreo.getText().toString());
+        //apiUrl = url.getApiResetPassword(txtCorreo.getText().toString());
+        apiUrl = url.getApiResetPassword("");
 
 
         btnBack.setOnClickListener((View view)->{
             Intent a = new Intent(OlvidarContrasena.this, Login.class);
             startActivity(a);
         });
-
-
 
 
         txtCorreo.addTextChangedListener(new TextWatcher() {
@@ -110,10 +110,10 @@ public class OlvidarContrasena extends AppCompatActivity {
         btnNext.setOnClickListener((View view)->{
             completeChecks();
             if(!hasSentCode){
-                resetPassword(apiUrl);
+                resetPassword(apiUrl); //Utiliza la ultima apiUrl generada
                 hasSentCode = true;
             }
-            MailHolder.getInstance().setHolder(mailHolder);
+            MailHolder.getInstance().setHolder(mailHolder.setCorreo(txtCorreo.getText().toString()));
             System.out.println("CORREO ENVIADO: " + mailHolder.getCorreo());
             Intent b = new Intent(OlvidarContrasena.this, VerificacionOTP.class);
             startActivity(b);
@@ -164,7 +164,7 @@ public class OlvidarContrasena extends AppCompatActivity {
             return headers;
         }
     }
-
+//REVISAR PORQUE NO LLEGA AL BACKEND
     private void resetPassword(String baseUrl) {
         Log.i("URL ROUTE: ", baseUrl.substring(baseUrl.indexOf("/api")));
 
@@ -199,16 +199,26 @@ public class OlvidarContrasena extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Error: ", error + "");
+                /*Log.e("Error: ", error + "");
 
                 //VERIFICA SI EL ERROR ES UN 401
                 if (error instanceof AuthFailureError) {
                     Toast.makeText(OlvidarContrasena.this, "¡Correo incorrecto!", Toast.LENGTH_SHORT).show();
+                }*/
+
+                NetworkResponse networkResponse = error.networkResponse;
+                if (networkResponse != null && networkResponse.data != null) {
+                    String responseBody = new String(networkResponse.data, StandardCharsets.UTF_8);
+                    int statusCode = networkResponse.statusCode;
+                    Log.e("RESPONSE", "Status Code: " + statusCode + "\n\n" + responseBody);
+                } else {
+                    Log.e("RESPONSE", "Respuesta vacía");
                 }
 
             }
         }) {
 
+            @Override
             public String getBodyContentType() {
                 return "application/json; charset=utf-8";
             }
