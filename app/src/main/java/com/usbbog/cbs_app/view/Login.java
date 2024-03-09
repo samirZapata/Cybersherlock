@@ -1,7 +1,5 @@
 package com.usbbog.cbs_app.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +10,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -79,11 +79,16 @@ public class Login extends AppCompatActivity {
         btnFPass.setOnClickListener((View view)->{
             Intent a = new Intent(Login.this, OlvidarContrasena.class);
             startActivity(a);
+
         });
 
     }
 
 
+@Override
+public void onBackPressed() {
+    super.onBackPressed();
+}
     private void sing_In(String baseUrl) {
         Log.i("URL ROUTE: ", baseUrl);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl, new Response.Listener<String>() {
@@ -104,9 +109,11 @@ public class Login extends AppCompatActivity {
                         if (primerIngreso){
                             Intent a = new Intent(Login.this, Dashboard.class);
                             startActivity(a);
+                            finish();
                         }else {
                             Intent b = new Intent(Login.this, WMiddle.class);
                             startActivity(b);
+                            finish();
                         }
 
                         SharedPreferences.Editor editor  = sharedPreferences.edit();
