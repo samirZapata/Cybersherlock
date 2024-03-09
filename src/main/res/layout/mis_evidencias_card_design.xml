@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/eImg"
+            android:layout_width="50dp"
+            android:layout_height="65dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/txtCardFechaEvidencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="10/02/2024"
+            android:layout_toRightOf="@id/eImg"
+            android:fontFamily="@font/montserrat_semi_bold"/>
+
+        <TextView
+            android:id="@+id/txtCardEvidencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Evidencia 01sfsds54s5sdsds5"
+            android:layout_below="@id/txtCardFechaEvidencia"
+            android:layout_toRightOf="@id/eImg"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_semi_bold"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

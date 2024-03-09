@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.Casos">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="#fff"
+                android:padding="29dp"
+                app:cardCornerRadius="200dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:id="@+id/viewUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
+                    android:text="K"
+                    android:textColor="#63000000"
+                    android:textSize="20dp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:padding="10dp"
+            android:text="Tus casos"
+            android:textAlignment="center"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_regular"
+            android:padding="10dp"
+            android:text="@string/tusCasos"
+            android:textSize="15sp"/>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvCasos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            app:cardElevation="-1dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners">
+
+                <TextView
+                    android:id="@+id/txtIdcasos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Caso #123"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/txtDescC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/ejemploCaso"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:padding="12dp"/>
+
+                <Button
+                    android:id="@+id/btnVerMasC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:text="@string/verMasBTN"
+                    android:background="#00000000"
+                    android:padding="10dp"
+                    android:textColor="@color/linkColor"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:layout_alignParentBottom="true"/>
+
+                <TextView
+                    android:id="@+id/txtFechaC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:text="21/01/2024"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:padding="12dp"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:layout_marginTop="12dp"
+            app:cardElevation="-1dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners">
+
+                <TextView
+                    android:id="@+id/txtIdcasos2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Caso #123"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/txtDescC2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/ejemploCaso"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:padding="12dp"/>
+
+                <Button
+                    android:id="@+id/btnVerMasC2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:text="@string/verMasBTN"
+                    android:background="#00000000"
+                    android:padding="10dp"
+                    android:textColor="@color/linkColor"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:layout_alignParentBottom="true"/>
+
+                <TextView
+                    android:id="@+id/txtFechaC2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:text="21/01/2024"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:padding="12dp"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <Button
+            android:id="@+id/btnNuevoC"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="Nuevo"
+            android:backgroundTint="@color/generalBtnColor"
+            android:background="@drawable/rounded_btn"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="5dp"/>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
