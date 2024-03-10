@@ -1,48 +1,25 @@
 package com.usbbog.cbs_app.view;
 
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
-import retrofit2.http.HeaderMap;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.PartMap;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.documentfile.provider.DocumentFile;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.usbbog.cbs_app.R;
 import com.usbbog.cbs_app.networking.Network;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -53,13 +30,39 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.PartMap;
+
+
+/*
+                    __/\\\\\\\\\\\\\____/\\\\____________/\\\\____/\\\\\\\\\_____
+                     _\/\\\/////////\\\_\/\\\\\\________/\\\\\\__/\\\///////\\\___
+                      _\/\\\_______\/\\\_\/\\\//\\\____/\\\//\\\_\///______\//\\\__
+                       _\/\\\\\\\\\\\\\/__\/\\\\///\\\/\\\/_\/\\\___________/\\\/___
+                        _\/\\\/////////____\/\\\__\///\\\/___\/\\\________/\\\//_____
+                         _\/\\\_____________\/\\\____\///_____\/\\\_____/\\\//________
+                          _\/\\\_____________\/\\\_____________\/\\\___/\\\/___________
+                           _\/\\\_____________\/\\\_____________\/\\\__/\\\\\\\\\\\\\\\_
+                            _\///______________\///______________\///__\///////////////__
+*
+* */
+
 public class Nuevo_caso extends AppCompatActivity {
     Button btnpasos, btnimportar;
     ImageView btnBack;
     EditText txtFecha, txtPersonaje, txtWhastapp, txtDescripcion;
     private static final int PICK_FILE_REQUEST_CODE = 123;
     Network network = new Network();
-    String createCaseUrl = network.getUrlForCreateCase();
+    String createCaseUrl = network.getGetUrlForCreateCase();
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(createCaseUrl)
@@ -95,8 +98,8 @@ public class Nuevo_caso extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (campos()) {
-                    envioZipalServidor();
-                    elegirFile();
+                    envioZipalServidor(); // Subida inicial del archivo ZIP al servidor
+                    elegirFile(); // Solicitud de carga del archivo ZIP desde dispositivo
                 }
             }
         });
@@ -113,7 +116,7 @@ public class Nuevo_caso extends AppCompatActivity {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         CaseApi caseApi = retrofit.create(CaseApi.class);
-
+        // Definición de endpoint y petición POST multiparte para subir el archivo ZIP
         Map<String, RequestBody> files = new HashMap<>();
 
         Call<String> call = caseApi.uploadZip(files);
@@ -135,7 +138,7 @@ public class Nuevo_caso extends AppCompatActivity {
         });
     }
 
-    //Interfase CaseApi
+    // Interfaz CaseApi para definir endpoints disponibles en el backend
     interface CaseApi{
         @Multipart
         @POST("upload")

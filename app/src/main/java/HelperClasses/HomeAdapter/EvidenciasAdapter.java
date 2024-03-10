@@ -62,9 +62,4 @@ public class EvidenciasAdapter extends RecyclerView.Adapter<EvidenciasAdapter.Ev
 
         }
     }
-
-
-
-
-
 }

@@ -1,12 +1,13 @@
 package com.usbbog.cbs_app.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.usbbog.cbs_app.R;
 
@@ -15,10 +16,11 @@ public class Casos extends AppCompatActivity {
 
     CardView cvCasos;
     TextView txtTitulo,txtDescripcion, txtFecha;
-    Button btnVerMas;
+    Button btnVerMas, btnNuevo;
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,9 @@ public class Casos extends AppCompatActivity {
         setContentView(R.layout.activity_casos);
 
 
+        btnNuevo = findViewById(R.id.btnNuevoCaso);
 
+        //PARA PROBAR NUEVOS CASOS VAMOS A CARGAR PRIMERO LOS QUE HAY EN LA DB
     }
 
 

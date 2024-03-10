@@ -77,7 +77,7 @@
             android:layout_gravity="center">
 
             <Button
-                android:id="@+id/btnCasos"
+                android:id="@+id/btnNuevoCaso"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Nuevo"

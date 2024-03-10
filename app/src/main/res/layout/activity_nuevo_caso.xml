@@ -76,6 +76,7 @@
                 android:id="@+id/edtDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="date"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,6 +103,7 @@
                 android:id="@+id/edtPersonaje"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,7 +115,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:hint="WhatsApp/Telegram de la persona"
+            android:hint="# WhatsApp/Telegram de la persona"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
@@ -128,6 +130,7 @@
                 android:id="@+id/edtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="phone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,6 +157,7 @@
                 android:id="@+id/edtDescribe"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
+                android:fontFamily="@font/montserrat_regular"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -164,11 +168,12 @@
             android:layout_gravity="clip_horizontal"
             android:backgroundTint="@color/white"
             android:text="Cómo importar el archivo"
+            android:fontFamily="@font/montserrat_semi_bold"
             android:textColor="@color/linkColor" />
 
         <Button
             android:id="@+id/btn_importar"
-            android:layout_width="148dp"
+            android:layout_width="150dp"
             android:layout_height="57dp"
             android:layout_gravity="center"
             android:layout_marginTop="7dp"
@@ -178,6 +183,7 @@
             android:gravity="center"
             android:text="Importar"
             android:textColor="@color/white"
+            android:drawableLeft="@drawable/ic_clip"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Descripcion" />
