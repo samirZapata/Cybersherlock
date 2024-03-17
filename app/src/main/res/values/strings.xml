@@ -35,6 +35,7 @@
         "tu información esta totalmente protegida y se \n"
         "almacena de forma anónima."
     </string>
+    <string name="txtNuevoCaso">Recuerda diligenciar todos los campos antes de importar el archivo. Es obigatorio diligenciar todos los campos.</string>
     <string name="ejemploCaso">Descripción\n"breve del caso..."</string>
     <string name="verMasBTN">Ver mas...</string>
     <string name="consultarBTN">Consultar...</string>

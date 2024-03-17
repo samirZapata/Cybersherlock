@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -74,9 +75,10 @@ public class Nuevo_caso extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_nuevo_caso);
 
-        btnBack = findViewById(R.id.btnBack);
+        //btnBack = findViewById(R.id.btnBack);
         btnpasos = findViewById(R.id.btn_pasos);
         btnimportar = findViewById(R.id.btn_importar);
         txtFecha = findViewById(R.id.edtDate);
@@ -84,10 +86,10 @@ public class Nuevo_caso extends AppCompatActivity {
         txtWhastapp = findViewById(R.id.edtPhone);
         txtDescripcion = findViewById(R.id.edtDescribe);
 
-        btnBack.setOnClickListener((View view)->{
+        /*btnBack.setOnClickListener((View view)->{
             Intent i = new Intent(Nuevo_caso.this, Dashboard.class);
             startActivity(i);
-        });
+        });*/
 
         btnpasos.setOnClickListener((View view)->{
             Intent i = new Intent(Nuevo_caso.this, Pasos_importar.class);

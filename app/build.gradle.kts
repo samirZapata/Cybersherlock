@@ -29,6 +29,10 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    buildFeatures{
+        viewBinding = true
+    }
     compileOptions {
         targetCompatibility = JavaVersion.VERSION_1_8
     }

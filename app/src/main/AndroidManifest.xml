@@ -47,6 +47,12 @@
             android:name=".view.Login"
             android:exported="false" />
         <activity
+            android:name=".view.Nuevo_caso"
+            android:exported="false" />
+        <activity
+            android:name=".view.Pasos_importar"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>

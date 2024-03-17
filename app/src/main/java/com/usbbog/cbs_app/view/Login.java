@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.usbbog.cbs_app.R;
+import com.usbbog.cbs_app.modelHelper.AppData;
 import com.usbbog.cbs_app.networking.Network;
 
 import org.json.JSONException;
@@ -49,8 +50,6 @@ public class Login extends AppCompatActivity {
     Button btnLogin, btnSingUp, btnFPass;
     EditText txtCorreo, txtPass;
 
-    private Network url = new Network();
-    private String apiUrl = url.getApiSinIn();
     private RequestQueue requestQueue;
 
     @Override
@@ -67,6 +66,9 @@ public class Login extends AppCompatActivity {
         txtPass = findViewById(R.id.edtPasslg);
         btnFPass = findViewById(R.id.fpass);
 
+        Network url = new Network();
+        String apiUrl = url.getApiSinIn();
+
         btnSingUp.setOnClickListener((View view) -> {
             Intent i = new Intent(Login.this, Sing_up.class);
             startActivity(i);
@@ -82,6 +84,23 @@ public class Login extends AppCompatActivity {
 
         });
 
+       /* txtCorreo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.i("CORREO: ", s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });*/
+
     }
 
 
@@ -89,19 +108,18 @@ public class Login extends AppCompatActivity {
 public void onBackPressed() {
     super.onBackPressed();
 }
+
     private void sing_In(String baseUrl) {
         Log.i("URL ROUTE: ", baseUrl);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, baseUrl, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                baseUrl,
+                new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 try {
-                    //JSONObject object = new JSONObject();
-                    //VERIFICACION DEL TOKEN
-                    //String correo = object.getString("correo");
-                    //String pass = object.getString("password");
-                    //if (correo.equals(txtCorreo.getText().toString()) && pass.equals(txtPass.getText().toString())) {
-                        Toast.makeText(Login.this, "Bienveni@", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Bienveni@", Toast.LENGTH_SHORT).show();
 
                         SharedPreferences sharedPreferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
                         boolean primerIngreso = sharedPreferences.getBoolean("primer_ingreso", false);
@@ -137,8 +155,6 @@ public void onBackPressed() {
                 //VERIFICA SI EL ERROR ES UN 401
                 if (error instanceof AuthFailureError) {
                     Toast.makeText(Login.this, "¡Credenciales incorrectas!", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(Login.this, "¡Credenciales incorrectas!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -156,6 +172,10 @@ public void onBackPressed() {
                     jsonBody.put("correo", txtCorreo.getText().toString());
                     jsonBody.put("password", txtPass.getText().toString());
 
+
+                    String correo = txtCorreo.getText().toString();
+                    AppData.setCorreo(correo);
+
                     // CONVIERTE EL OBJETO JSON A BYTES
                     return jsonBody.toString().getBytes("utf-8");
                 } catch (JSONException e) {
@@ -170,12 +190,5 @@ public void onBackPressed() {
         RU.add(stringRequest);
     }
 
-    private void saveTokenSharedPreferences(String token) {
-        // Guarda el token en las preferencias compartidas para su uso posterior
-        //SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        //SharedPreferences.Editor editor = preferences.edit();
-        //editor.putString("token", token);
-        //editor.apply();
-    }
 
 }
