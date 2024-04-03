@@ -8,7 +8,7 @@
     android:layout_margin="10dp">
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="390dp"
         android:layout_height="200dp"
         android:padding="10dp">
 
@@ -30,17 +30,26 @@
             android:fontFamily="@font/montserrat_regular"
             android:text="Ana y Juan solían ser amigos, pero después de una discusión, Juan comenzó a enviarle mensajes de texto abusivos y a publicar " />
 
-        <TextView
-            android:id="@+id/btnCardVer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Ver mas..."
-            android:layout_below="@id/txtCardDesc"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/linkColor"
-            android:fontFamily="@font/montserrat_regular"
-            />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="@color/black"
+            android:padding="29dp"
+            app:cardCornerRadius="200dp"
+            app:cardElevation="0dp">
+
+
+            <ImageView
+                android:id="@+id/btnMasDetalle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_eye_wh"
+                android:layout_gravity="center"/>
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

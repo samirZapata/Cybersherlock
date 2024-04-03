@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,7 +40,7 @@ public class CasosAdapter extends RecyclerView.Adapter<CasosAdapter.CasosViewHol
 
     @Override
     public int getItemCount() {
-        return casos == null ? 0 : casos.size();
+        return casos.size();
     }
 
     public void updateDataSet(List<CasosHolder> newItems) {
@@ -56,14 +57,15 @@ public class CasosAdapter extends RecyclerView.Adapter<CasosAdapter.CasosViewHol
     }
 
     class CasosViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView idCasos, desCasos, btnVerMas;
+        TextView idCasos, desCasos;
+        ImageView btnVerMas;
 
         public CasosViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            idCasos = itemView.findViewById(R.id.txtCardEvidencia);
+            idCasos = itemView.findViewById(R.id.txtCardCaso);
             desCasos = itemView.findViewById(R.id.txtCardDesc);
-            btnVerMas = itemView.findViewById(R.id.btnCardVer);
+            btnVerMas = itemView.findViewById(R.id.btnMasDetalle);
 
             btnVerMas.setOnClickListener(this);
         }

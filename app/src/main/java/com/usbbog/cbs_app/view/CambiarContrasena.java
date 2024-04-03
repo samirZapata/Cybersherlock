@@ -26,7 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputLayout;
 import com.usbbog.cbs_app.R;
-import com.usbbog.cbs_app.modelHelper.Holder;
+import com.usbbog.cbs_app.modelHelper.UsuariosHolder;
 import com.usbbog.cbs_app.modelHelper.MailHolder;
 import com.usbbog.cbs_app.networking.Network;
 
@@ -62,7 +62,7 @@ public class CambiarContrasena extends AppCompatActivity {
     TextInputLayout layoutPass;
     private Network url = new Network();
     private String apiUrl = url.getApiUpdatePassword();
-    Holder getMail = new Holder();
+    UsuariosHolder getMail = new UsuariosHolder();
 
 
     @SuppressLint("MissingInflatedId")

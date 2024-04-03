@@ -8,14 +8,16 @@ public class CasosHolder {
     private String telAcosador;
     private String desc;
     private String Evidencias;
+    private boolean cifrado;
 
 
-    public CasosHolder(String nombreCaso, String acosador, String telAcosador, String desc, String evidencias) {
+    public CasosHolder(String nombreCaso, String acosador, String telAcosador, String desc, String evidencias, boolean cifrado) {
         this.nombreCaso = nombreCaso;
         this.acosador = acosador;
         this.telAcosador = telAcosador;
         this.desc = desc;
         Evidencias = evidencias;
+        this.cifrado = cifrado;
     }
 
 
@@ -57,6 +59,14 @@ public class CasosHolder {
 
     public void setEvidencias(String evidencias) {
         Evidencias = evidencias;
+    }
+
+    public boolean isCifrado() {
+        return cifrado;
+    }
+
+    public void setCifrado(boolean cifrado) {
+        this.cifrado = cifrado;
     }
 
     @Override

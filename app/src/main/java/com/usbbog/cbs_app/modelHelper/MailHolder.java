@@ -3,7 +3,7 @@ package com.usbbog.cbs_app.modelHelper;
 public class MailHolder {
 
     private static MailHolder instance;
-    private Holder holder;
+    private UsuariosHolder usuariosHolder;
 
     private MailHolder(){}
 
@@ -14,12 +14,12 @@ public class MailHolder {
         return instance;
     }
 
-    public void setHolder(Holder holder){
-        this.holder = holder;
+    public void setHolder(UsuariosHolder usuariosHolder){
+        this.usuariosHolder = usuariosHolder;
     }
 
-    public Holder getHolder(){
-        return holder;
+    public UsuariosHolder getHolder(){
+        return usuariosHolder;
     }
 
 }

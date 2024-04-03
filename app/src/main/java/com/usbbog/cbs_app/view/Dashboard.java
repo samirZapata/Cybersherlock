@@ -22,7 +22,7 @@ import HelperClasses.HomeAdapter.EvidenciasHelperClass;
 
 public class Dashboard extends AppCompatActivity {
 
-    Button btnCasos, btnEvidencias;
+    Button btnCasos, btnNuevoCaso;
     TextView txtUser, txtVerTodo;
     RecyclerView rcConsejos, rcEvidencias;
     RecyclerView.Adapter adapter;
@@ -35,13 +35,12 @@ public class Dashboard extends AppCompatActivity {
 
         //START HOOKS----------------------------------------
         btnCasos = findViewById(R.id.btnCasos);
-        btnEvidencias = findViewById(R.id.btnEvidencias);
+        btnNuevoCaso = findViewById(R.id.btnEvidencias);
         txtUser = findViewById(R.id.viewUserName);
         txtVerTodo = findViewById(R.id.btnVerTodaEvidencias);
         rcConsejos = findViewById(R.id.rcConsejos);
         rcEvidencias = findViewById(R.id.rcEvidencias);
         //END HOOKS-------------------------------------------
-
 
 
         rcTips();
@@ -54,9 +53,9 @@ public class Dashboard extends AppCompatActivity {
             startActivity(goCasos);
         });
 
-        btnEvidencias.setOnClickListener((View view)->{
-            //Intent goEvidencias = new Intent(Dashboard.this, Evidencias.class);
-            //startActivity(goEvidencias);
+        btnNuevoCaso.setOnClickListener((View view)->{
+            Intent goNuevoCaso = new Intent(Dashboard.this, Nuevo_caso.class);
+            startActivity(goNuevoCaso);
         });
 
         txtUser.setOnClickListener((View view)->{
@@ -94,10 +93,10 @@ public class Dashboard extends AppCompatActivity {
 
         ArrayList<EvidenciasHelperClass> evidencias = new ArrayList<>();
 
-        evidencias.add(new EvidenciasHelperClass("15/02/2024", "15sd6s5d168s4ds8d65s8d75", R.drawable.ic_info));
-        evidencias.add(new EvidenciasHelperClass("12/02/2024", "sd8s9d856sd89sd85s6d8s9d", R.drawable.ic_info));
-        evidencias.add(new EvidenciasHelperClass("14/02/2024", "sd7s45d87d5s4ds57s54ds74", R.drawable.ic_info));
-        evidencias.add(new EvidenciasHelperClass("16/02/2024", "754s4ds54d5sd45sd45sd45s", R.drawable.ic_info));
+        evidencias.add(new EvidenciasHelperClass("15/02/2024", "15sd6s5d168s4ds8d65s8d75", R.drawable.ic_clip_b));
+        evidencias.add(new EvidenciasHelperClass("12/02/2024", "sd8s9d856sd89sd85s6d8s9d", R.drawable.ic_clip_b));
+        evidencias.add(new EvidenciasHelperClass("14/02/2024", "sd7s45d87d5s4ds57s54ds74", R.drawable.ic_clip_b));
+        evidencias.add(new EvidenciasHelperClass("16/02/2024", "754s4ds54d5sd45sd45sd45s", R.drawable.ic_clip_b));
 
         adapter = new EvidenciasAdapter(evidencias);
         rcEvidencias.setAdapter(adapter);

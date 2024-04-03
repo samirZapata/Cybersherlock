@@ -29,9 +29,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import HelperClasses.HomeAdapter.CAdapter;
 import HelperClasses.HomeAdapter.CasosAdapter;
-import HelperClasses.HomeAdapter.CasosHelperClass;
 
 
 public class Casos extends AppCompatActivity {
@@ -39,13 +40,16 @@ public class Casos extends AppCompatActivity {
 
 
     RecyclerView rcEvidencias;
+    private CAdapter adapter;
+
     TextView txtTitulo,txtDescripcion, txtFecha;
     Button btnVerMas, btnNuevo;
     private Network apiUrl = new Network();
-    ArrayList<CasosHelperClass> casos = new ArrayList<>();
-    private CasosAdapter adapter;
+    //ArrayList<CasosHelperClass> casos = new ArrayList<>();
+    //private CasosAdapter adapter;
     int counter = 0;
     RequestQueue requestQueue;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +57,23 @@ public class Casos extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_casos);
 
-
+        //HOOKS ######################################################
         rcEvidencias = findViewById(R.id.rcEvidencias);
         btnNuevo = findViewById(R.id.btnNuevoCaso);
         btnVerMas = findViewById(R.id.btnVerMasC);
         requestQueue = Volley.newRequestQueue(this);
+        //############################################################
+        rcEvidencias.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
         String currentMail = AppData.getCorreo();
         String baseUrl = apiUrl.getApiGetCasos(currentMail);
 
 
-        List<CasosHolder> casosList;
-
         casosList(baseUrl);
+
+
+
+
         btnNuevo.setOnClickListener((View view)->{
             Intent a = new Intent(Casos.this, Nuevo_caso.class);
             startActivity(a);
@@ -155,7 +164,10 @@ public class Casos extends AppCompatActivity {
         requestQueue.add(casosRequest);
     }*/
 
+
+
     private void casosList(String baseUrl) {
+
         Log.i(TAG, baseUrl);
 
         JsonObjectRequest casosRequest = new JsonObjectRequest(
@@ -166,32 +178,34 @@ public class Casos extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray jsonArray = response.getJSONArray("data");
+
+                            JSONArray jsonArray = response.getJSONArray("Case");
                             int size = jsonArray.length();
                             List<CasosHolder> items = new ArrayList<>();
 
                             for (int i = 0; i < size; i++) {
                                 JSONObject jsonObject = new JSONObject(jsonArray.get(i).toString());
 
-                                String casosNombre = jsonObject.getString("nombreCaso");
-                                String casosDescripcion = jsonObject.getString("desc");
+                                String casosNombre;
+                                String casosDescripcion;
+                                casosNombre = jsonObject.getString("nombreCaso");
+                                casosDescripcion = jsonObject.getString("desc");
                                 items.add(
                                         new CasosHolder(
                                                 casosNombre,
                                                 null,
                                                 null,
                                                 casosDescripcion,
-                                                null
+                                                null,
+                                                true
                                         ));
                             }
 
-                            adapter = new CasosAdapter(items, Casos.this);
-                            adapter.setOnItemClickListener(Casos.this::handleBtnVerMasClick);
+                            adapter = new CAdapter(items, getApplicationContext());
+                            //adapter.setOnItemClickListener(Casos.this::handleBtnVerMasClick);
 
-                            LinearLayoutManager llm = new LinearLayoutManager(Casos.this);
-                            llm.setOrientation(LinearLayoutManager.VERTICAL);
-                            rcEvidencias.setLayoutManager(llm);
                             rcEvidencias.setAdapter(adapter);
+
 
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -201,7 +215,7 @@ public class Casos extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        Log.i(TAG, volleyError.getMessage());
+                        Log.i(TAG, Objects.requireNonNull(volleyError.getMessage()));
                     }
                 });
         requestQueue.add(casosRequest);

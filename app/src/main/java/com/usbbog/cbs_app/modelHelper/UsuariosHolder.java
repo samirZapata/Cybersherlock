@@ -1,6 +1,6 @@
 package com.usbbog.cbs_app.modelHelper;
 
-public class Holder {
+public class UsuariosHolder {
 
     private String nombre;
     private int edad;
@@ -10,7 +10,7 @@ public class Holder {
     private String password;
 
 
-    public Holder(String nombre, int edad, String correo, String genero, int dni, String password) {
+    public UsuariosHolder(String nombre, int edad, String correo, String genero, int dni, String password) {
         this.nombre = nombre;
         this.edad = edad;
         this.correo = correo;
@@ -19,7 +19,7 @@ public class Holder {
         this.password = password;
     }
 
-    public Holder() {
+    public UsuariosHolder() {
 
     }
 

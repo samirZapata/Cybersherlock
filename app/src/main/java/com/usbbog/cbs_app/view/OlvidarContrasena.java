@@ -23,7 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.usbbog.cbs_app.R;
-import com.usbbog.cbs_app.modelHelper.Holder;
+import com.usbbog.cbs_app.modelHelper.UsuariosHolder;
 import com.usbbog.cbs_app.modelHelper.MailHolder;
 import com.usbbog.cbs_app.networking.Network;
 
@@ -66,7 +66,7 @@ public class OlvidarContrasena extends AppCompatActivity {
     private String apiUrl = url.getApiResetPassword("");
     private RequestQueue requestQueue;
     boolean checkComplete, hasSentCode = false;
-    Holder mailHolder = new Holder();
+    UsuariosHolder mailHolder = new UsuariosHolder();
 
     @SuppressLint("WrongViewCast")
     @Override
