@@ -72,7 +72,7 @@
 
 
             <RelativeLayout
-                android:layout_width="125dp"
+                android:layout_width="130dp"
                 android:layout_height="50dp"
                 android:layout_margin="10dp">
 
@@ -80,7 +80,7 @@
                     android:id="@+id/btnNuevoCaso"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Casos"
+                    android:text="Nuevo"
                     android:drawableLeft="@drawable/ic_folder"
                     android:backgroundTint="@color/black"
                     android:textColor="@color/white"
@@ -360,7 +360,7 @@
                     android:fontFamily="@font/montserrat_semi_bold"
                     android:layout_margin="3dp"
                     android:gravity="left"
-                    android:text="Cifrado de la evidencia"
+                    android:text="Clave de cifrado"
                     android:textSize="15sp"/>
 
                 <TextView

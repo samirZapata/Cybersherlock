@@ -17,14 +17,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.usbbog.cbs_app.R;
 import com.usbbog.cbs_app.modelHelper.AppData;
 import com.usbbog.cbs_app.modelHelper.CasosHolder;
 import com.usbbog.cbs_app.networking.ApiServices;
 import com.usbbog.cbs_app.networking.RetrofitClient;
 
+import java.io.IOException;
 import java.util.Objects;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,6 +70,7 @@ public class DetalleCasos extends AppCompatActivity {
         String nombreCaso = AppData.getNombreCaso();
         String uri = AppData.getFileUri();
 
+
         //HOOKS
         nombreCasos = findViewById(R.id.idCaso);
         nombreAcosador = findViewById(R.id.nombreAcosador);
@@ -74,6 +81,8 @@ public class DetalleCasos extends AppCompatActivity {
         //____________________________________
         btnNuevoCaso = findViewById(R.id.btnNuevoCaso);
         btnExportar = findViewById(R.id.btnExportar);
+
+        getCaseByName();
 
         //-------------------------------------
         cPerfil = findViewById(R.id.cPerfil);
@@ -95,42 +104,66 @@ public class DetalleCasos extends AppCompatActivity {
             startActivity(goPerfil);
         });
 
-        getCaseByName();
+
 
     }
 
 
     private void getCaseByName() {
-
         apiService = RetrofitClient.getClient().create(ApiServices.class);
 
+        // Obtener el nombre del caso desde AppData
         String nombreCaso = AppData.getNombreCaso();
+
         // Realizar la llamada para obtener los datos del caso
-        Call<CasosHolder> call = apiService.getCasoByNombreCaso(nombreCaso);
-        call.enqueue(new Callback<CasosHolder>() {
+        Call<ResponseBody> call = apiService.getCasoByNombreCaso(nombreCaso);
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<CasosHolder> call, Response<CasosHolder> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    CasosHolder caso = response.body();
-                    // Mostrar los datos del caso en los componentes de la interfaz de usuario
-                    nombreCasos.setText(caso.getNombreCaso());
-                    nombreAcosador.setText(caso.getAcosador());
-                    //fechaCaso.setText(caso.getFecha()); // Asegúrate de tener un campo de fecha en CasosHolder
-                    telAcosador.setText(caso.getTelAcosador());
-                    desc.setText(caso.getDesc());
-                    cifrado.setText(String.valueOf(caso.isCifrado())); // Convertir booleano a String
+                    try {
+                        // Convertir el cuerpo de la respuesta a String y mostrarlo en los componentes de la interfaz de usuario
+                        String responseBody = response.body().string();
+
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.fromJson(responseBody, JsonObject.class);
+
+                        JsonObject caso = jsonObject.getAsJsonObject("caso");
+                        String cName = caso.get("nombreCaso").getAsString();
+                        String cAcosador = caso.get("acosador").getAsString();
+                        String cFecha = caso.get("createdAt").getAsString();
+                        String cTelefono = caso.get("telAcosador").getAsString();
+                        String cDesc = caso.get("desc").getAsString();
+
+                        JsonArray evidenciasArray = jsonObject.getAsJsonArray("evidencias");
+                        for (JsonElement elemento : evidenciasArray) {
+                            JsonObject evidencia = elemento.getAsJsonObject();
+                            String cCif = evidencia.get("claveDeCifrado").getAsString();
+                            cifrado.setText(cCif);
+                        }
+
+                        nombreCasos.setText(cName);
+                        nombreAcosador.setText(cAcosador);
+                        fechaCaso.setText(cFecha);
+                        telAcosador.setText(cTelefono);
+                        desc.setText(cDesc);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } else {
-                    Log.i(TAG, "No se pudo obtener ningun dato");
+                    // Manejar errores de respuesta
+                    Log.i(TAG, "Error en la respuesta: " + response.code());
                 }
             }
 
             @Override
-            public void onFailure(Call<CasosHolder> call, Throwable t) {
-                Log.i(TAG, Objects.requireNonNull(t.getMessage()));
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Manejar errores de red
+                Log.e(TAG, "Error de red: " + t.getMessage(), t);
             }
         });
     }
-
 
 
     private void downloadFile(Context context, Uri uri, String displayName) {

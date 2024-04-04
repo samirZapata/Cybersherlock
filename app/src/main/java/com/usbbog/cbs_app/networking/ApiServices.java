@@ -13,16 +13,11 @@ import retrofit2.http.Path;
 
 public interface ApiServices {
 
-    String cName = AppData.getNombreCaso();
 
     @GET("api/cases/{nombreCaso}")
-    Call<CasosHolder> getCasoByNombreCaso(
-            @Path("nombreCaso") String nombreCaso
-    );
+    Call<ResponseBody> getCasoByNombreCaso(@Path("nombreCaso") String nombreCaso);
 
     @GET("api/cases/{nombreCaso}/archivo")
-    Call<ResponseBody> descargarArchivo(
-            @Part MultipartBody.Part evidencias
-    );
+    Call<ResponseBody> descargarArchivo(@Path("nombreCaso") String nombreCaso);
 
 }

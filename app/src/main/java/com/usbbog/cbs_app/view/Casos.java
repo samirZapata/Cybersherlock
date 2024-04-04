@@ -197,7 +197,7 @@ public class Casos extends AppCompatActivity {
                                                 null,
                                                 casosDescripcion,
                                                 null,
-                                                true
+                                                null
                                         ));
                             }
 
