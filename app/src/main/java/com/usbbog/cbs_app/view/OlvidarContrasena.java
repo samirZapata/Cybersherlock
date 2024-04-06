@@ -183,7 +183,7 @@ public class OlvidarContrasena extends AppCompatActivity {
                     Map<String, List<String>> headers = headerUtil.parseHeaders(response);
                     String statusLine = headers.get("Status").get(0);
                     String[] parts = statusLine.split(" ");
-                    if (parts.length > 0 && (parts[0].equalsIgnoreCase("200") || parts[1].equalsIgnoreCase("ok"))) {
+                    if (parts.length > 0 && (parts[0].equalsIgnoreCase("200") || parts[1].equalsIgnoreCase("Ok"))) {
                         Toast.makeText(OlvidarContrasena.this, "Código enviado", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(OlvidarContrasena.this, "¡Correo incorrecto!", Toast.LENGTH_SHORT).show();

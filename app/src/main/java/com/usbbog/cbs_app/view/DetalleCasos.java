@@ -1,11 +1,8 @@
 package com.usbbog.cbs_app.view;
 
 import android.annotation.SuppressLint;
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -13,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -23,14 +21,15 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.usbbog.cbs_app.R;
 import com.usbbog.cbs_app.modelHelper.AppData;
-import com.usbbog.cbs_app.modelHelper.CasosHolder;
 import com.usbbog.cbs_app.networking.ApiServices;
 import com.usbbog.cbs_app.networking.RetrofitClient;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 import okhttp3.ResponseBody;
+import okio.BufferedSink;
+import okio.Okio;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -95,10 +94,6 @@ public class DetalleCasos extends AppCompatActivity {
             finish();
         });
 
-        btnExportar.setOnClickListener((View view)->{
-
-        });
-
         cPerfil.setOnClickListener((View view)->{
             Intent goPerfil = new Intent(DetalleCasos.this, Perfil.class);
             startActivity(goPerfil);
@@ -129,6 +124,7 @@ public class DetalleCasos extends AppCompatActivity {
                         JsonObject jsonObject = gson.fromJson(responseBody, JsonObject.class);
 
                         JsonObject caso = jsonObject.getAsJsonObject("caso");
+                        String id = caso.get("_id").getAsString();
                         String cName = caso.get("nombreCaso").getAsString();
                         String cAcosador = caso.get("acosador").getAsString();
                         String cFecha = caso.get("createdAt").getAsString();
@@ -136,9 +132,11 @@ public class DetalleCasos extends AppCompatActivity {
                         String cDesc = caso.get("desc").getAsString();
 
                         JsonArray evidenciasArray = jsonObject.getAsJsonArray("evidencias");
+                        String fileName = "";
                         for (JsonElement elemento : evidenciasArray) {
                             JsonObject evidencia = elemento.getAsJsonObject();
                             String cCif = evidencia.get("claveDeCifrado").getAsString();
+                            fileName = evidencia.get("filename").getAsString();
                             cifrado.setText(cCif);
                         }
 
@@ -147,6 +145,11 @@ public class DetalleCasos extends AppCompatActivity {
                         fechaCaso.setText(cFecha);
                         telAcosador.setText(cTelefono);
                         desc.setText(cDesc);
+
+                        String finalFileName = fileName;
+                        btnExportar.setOnClickListener((View view)->{
+                            downloadFile(DetalleCasos.this, id, finalFileName);
+                        });
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -166,19 +169,62 @@ public class DetalleCasos extends AppCompatActivity {
     }
 
 
-    private void downloadFile(Context context, Uri uri, String displayName) {
-        DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
-        DownloadManager.Request request = new DownloadManager.Request(uri);
 
-        request.setAllowedOverRoaming(false);
-        request.setTitle(displayName);
-        request.allowScanningByMediaScanner();
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, displayName);
+    private void downloadFile(Context context, String casoId, String nombreArchivo) {
+        // Crear instancia de ApiService
+        apiService = RetrofitClient.getClient().create(ApiServices.class);
 
-        downloadManager.enqueue(request);
+        // Realizar la llamada para descargar el archivo
+        Call<ResponseBody> call = apiService.descargarArchivo(casoId, nombreArchivo);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Guardar el archivo en la carpeta de descargas
+                    saveFileToDownloads(context, response.body(), nombreArchivo);
+                } else {
+                    // Manejar respuesta no exitosa
+                    Toast.makeText(context, "Error al descargar el archivo", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Manejar error de red
+                Toast.makeText(context, "Upss... parece que no tienes conexion a internet", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+    private void saveFileToDownloads(Context context, ResponseBody body, String nombreArchivo) {
+        try {
+            // Obtener el directorio de descargas
+            File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+            // Crear un archivo en el directorio de descargas con el nombre proporcionado
+            File file = new File(downloadsDir, nombreArchivo);
+
+            // Escribir el cuerpo de la respuesta en el archivo
+            BufferedSink bufferedSink = Okio.buffer(Okio.sink(file));
+            bufferedSink.writeAll(body.source());
+            bufferedSink.close();
+
+            if (file.exists() && file.length() > 0) {
+                // Mostrar mensaje de descarga completada
+                Intent goOk = new Intent(DetalleCasos.this, Ok.class);
+                startActivity(goOk);
+            } else {
+                Intent goBad = new Intent(DetalleCasos.this, Bad.class);
+                startActivity(goBad);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Manejar error al guardar el archivo
+            Toast.makeText(context, "Upss... parece que no tienes conexion a internet", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 }

@@ -69,6 +69,7 @@ dependencies {
     implementation("com.android.support:support-annotations:28.0.0")
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
     implementation("androidx.annotation:annotation:1.7.1")
+    implementation("androidx.activity:activity:1.8.0")
     testImplementation("junit:junit:4.13.2")
     implementation("com.google.android.material:compose-theme-adapter:1.2.1")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -12,4 +12,6 @@
     <color name="secondary">#050316</color>
     <color name="terciary">#F9F9F9</color>
     <color name="btnDash">#F9F9F9</color>
+    <color name="ok">#49A078</color>
+    <color name="bad">#E33A24</color>
 </resources>

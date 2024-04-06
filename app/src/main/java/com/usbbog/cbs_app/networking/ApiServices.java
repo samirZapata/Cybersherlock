@@ -17,7 +17,10 @@ public interface ApiServices {
     @GET("api/cases/{nombreCaso}")
     Call<ResponseBody> getCasoByNombreCaso(@Path("nombreCaso") String nombreCaso);
 
-    @GET("api/cases/{nombreCaso}/archivo")
-    Call<ResponseBody> descargarArchivo(@Path("nombreCaso") String nombreCaso);
+    @GET("api/cases/uploads/{casoId}/{nombreArchivo}")
+    Call<ResponseBody> descargarArchivo(
+            @Path("casoId") String casoId,
+            @Path("nombreArchivo") String nombreArchivo
+    );
 
 }
