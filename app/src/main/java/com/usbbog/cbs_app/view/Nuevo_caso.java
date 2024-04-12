@@ -43,7 +43,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.zip.ZipEntry;
@@ -82,7 +86,7 @@ public class Nuevo_caso extends AppCompatActivity {
     Button btnpasos, btnimportar, btnSelectFile;
     ImageView btnBack;
     EditText txtFecha, txtPersonaje, txtWhastapp, txtDescripcion;
-    TextView lblNomCaso;
+    TextView lblNomCaso, lblFecha;
     private TextInputLayout textInputLayout;
     private TextInputEditText archivoAdjunto;
 
@@ -107,7 +111,7 @@ public class Nuevo_caso extends AppCompatActivity {
         btnpasos = findViewById(R.id.btn_pasos);
         btnimportar = findViewById(R.id.btn_importar);
         lblNomCaso = findViewById(R.id.lblNomCaso);
-        txtFecha = findViewById(R.id.edtDate);
+        lblFecha = findViewById(R.id.lblFecha);
         txtPersonaje = findViewById(R.id.edtPersonaje);
         txtWhastapp = findViewById(R.id.edtPhone);
         txtDescripcion = findViewById(R.id.edtDescribe);
@@ -116,6 +120,8 @@ public class Nuevo_caso extends AppCompatActivity {
         textInputLayout = findViewById(R.id.textInputLayout);
 
         String currentMail = AppData.getCorreo();
+        String lFecha = obtenerFechaActual();
+        lblFecha.setText(lFecha);
 
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -164,6 +170,21 @@ public class Nuevo_caso extends AppCompatActivity {
 
         }
         return sb.toString();
+    }
+
+
+    private String obtenerFechaActual() {
+        // Obtener la instancia del calendario
+        Calendar calendario = Calendar.getInstance();
+
+        // Obtener la fecha actual como objeto Date
+        Date fecha = calendario.getTime();
+
+        // Formatear la fecha como string (por ejemplo: "dd/MM/yyyy HH:mm:ss")
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String fechaFormateada = formatoFecha.format(fecha);
+
+        return fechaFormateada;
     }
 
 
@@ -311,7 +332,8 @@ public class Nuevo_caso extends AppCompatActivity {
             String nombreCaso = nomCasoAux;
 
             //Asigno los valores de los campos del formulario a las variables
-            String fecha = txtFecha.getText().toString();
+            String fecha = obtenerFechaActual();
+            lblFecha.setText(fecha);
             String acosador = txtPersonaje.getText().toString();
             String telAcosador = txtWhastapp.getText().toString();
             String desc = txtDescripcion.getText().toString();
@@ -371,15 +393,10 @@ public class Nuevo_caso extends AppCompatActivity {
     * */
 
     private boolean campos(){
-        String fecha = txtFecha.getText().toString();
+        String fecha = obtenerFechaActual();
         String personaje = txtPersonaje.getText().toString();
         String whatsapp = txtWhastapp.getText().toString();
         String descrip = txtDescripcion.getText().toString();
-
-        if(fecha.isEmpty()){
-            showError(txtFecha, "Debe ingresar la fecha");
-            return false;
-        }
 
         if(personaje.isEmpty()){
             showError(txtPersonaje, "Debe ingresar el nombre de la persona que envia los mensajes");

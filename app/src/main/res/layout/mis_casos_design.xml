@@ -23,12 +23,23 @@
         <TextView
             android:id="@+id/txtCardDesc"
             android:layout_width="268dp"
-            android:layout_height="116dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/txtCardCaso"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_regular"
             android:text="Ana y Juan solían ser amigos, pero después de una discusión, Juan comenzó a enviarle mensajes de texto abusivos y a publicar " />
+
+        <TextView
+            android:id="@+id/txtCardEvidencia"
+            android:layout_width="268dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtCardDesc"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="ajdakjsbb3svtv7svts76dtvdsvs7v6s" />
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ public class DetalleCasos extends AppCompatActivity {
     TextView nombreCasos, nombreAcosador, fechaCaso, telAcosador, desc, cifrado;
     Button btnNuevoCaso, btnExportar;
     CardView cPerfil;
+    ImageView btnClose;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -80,7 +82,7 @@ public class DetalleCasos extends AppCompatActivity {
         //____________________________________
         btnNuevoCaso = findViewById(R.id.btnNuevoCaso);
         btnExportar = findViewById(R.id.btnExportar);
-
+        btnClose = findViewById(R.id.btnCloseD);
         getCaseByName();
 
         //-------------------------------------
@@ -97,6 +99,11 @@ public class DetalleCasos extends AppCompatActivity {
         cPerfil.setOnClickListener((View view)->{
             Intent goPerfil = new Intent(DetalleCasos.this, Perfil.class);
             startActivity(goPerfil);
+        });
+
+        btnClose.setOnClickListener((View view)->{
+            Intent goDash = new Intent(DetalleCasos.this, Dashboard.class);
+            startActivity(goDash);
         });
 
 
@@ -123,6 +130,7 @@ public class DetalleCasos extends AppCompatActivity {
                         Gson gson = new Gson();
                         JsonObject jsonObject = gson.fromJson(responseBody, JsonObject.class);
 
+                        //OBTENER DATOS DE CASOS
                         JsonObject caso = jsonObject.getAsJsonObject("caso");
                         String id = caso.get("_id").getAsString();
                         String cName = caso.get("nombreCaso").getAsString();
@@ -131,6 +139,7 @@ public class DetalleCasos extends AppCompatActivity {
                         String cTelefono = caso.get("telAcosador").getAsString();
                         String cDesc = caso.get("desc").getAsString();
 
+                        //OBTENER DATOS DE EVIDENCIAS
                         JsonArray evidenciasArray = jsonObject.getAsJsonArray("evidencias");
                         String fileName = "";
                         for (JsonElement elemento : evidenciasArray) {

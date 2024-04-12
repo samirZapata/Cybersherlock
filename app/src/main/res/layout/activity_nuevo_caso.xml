@@ -96,31 +96,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nuevoCaso" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtFecha"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:text="Fecha Actual"
+                android:fontFamily="@font/montserrat_regular"
+                />
+            <TextView
+                android:id="@+id/lblFecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Fecha actual"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:startIconTint="#000">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="date"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                android:text="12/07/2024"
+                android:fontFamily="@font/montserrat_regular"
+                />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtnombre_acosador"

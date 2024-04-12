@@ -1,5 +1,6 @@
 package com.usbbog.cbs_app.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.usbbog.cbs_app.R;
+import com.usbbog.cbs_app.modelHelper.AppData;
 
 import java.util.ArrayList;
 
@@ -23,10 +25,11 @@ import HelperClasses.HomeAdapter.EvidenciasHelperClass;
 public class Dashboard extends AppCompatActivity {
 
     Button btnCasos, btnNuevoCaso;
-    TextView txtUser, txtVerTodo;
+    TextView perfil, txtVerTodo;
     RecyclerView rcConsejos, rcEvidencias;
     RecyclerView.Adapter adapter;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class Dashboard extends AppCompatActivity {
         //START HOOKS----------------------------------------
         btnCasos = findViewById(R.id.btnCasos);
         btnNuevoCaso = findViewById(R.id.btnEvidencias);
-        txtUser = findViewById(R.id.viewUserName);
+        perfil = findViewById(R.id.txtLeterD);
         txtVerTodo = findViewById(R.id.btnVerTodaEvidencias);
         rcConsejos = findViewById(R.id.rcConsejos);
         rcEvidencias = findViewById(R.id.rcEvidencias);
@@ -58,7 +61,7 @@ public class Dashboard extends AppCompatActivity {
             startActivity(goNuevoCaso);
         });
 
-        txtUser.setOnClickListener((View view)->{
+        perfil.setOnClickListener((View view)->{
             Intent goPerfil = new Intent(Dashboard.this, Perfil.class);
             startActivity(goPerfil);
         });
@@ -102,6 +105,12 @@ public class Dashboard extends AppCompatActivity {
         rcEvidencias.setAdapter(adapter);
 
 
+    }
+
+
+    private void gotLetter(){
+        String letter = AppData.getNombre();
+        perfil.setText(letter);
     }
 
 

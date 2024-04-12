@@ -26,6 +26,8 @@ public class AppData {
     private static String descrip;
     private static String fileUri;
 
+    private static String nombre;
+
     public static String getCorreo(){
         return correo;
     }
@@ -65,5 +67,13 @@ public class AppData {
 
     public static String getFileUri() {
         return fileUri;
+    }
+
+    public static String getNombre() {
+        return nombre;
+    }
+
+    public static void setNombre(String nombre) {
+        AppData.nombre = nombre;
     }
 }

@@ -41,5 +41,8 @@ public class Network {
     public String getApiGetCasos(String nombreCaso){
         return "http://192.168.1.14:9000/api/cases/" + nombreCaso;
     }
+    public  String getApiCasesByEmail(String email){
+        return "http://192.168.1.14:9000/api/cases/" + email;
+    }
 
 }

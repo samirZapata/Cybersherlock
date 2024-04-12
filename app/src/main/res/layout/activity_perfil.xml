@@ -29,7 +29,7 @@
             app:cardElevation="0dp">
 
             <TextView
-                android:id="@+id/viewUserName"
+                android:id="@+id/txtInicial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -64,95 +64,164 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp">
 
-
-        <TextView
-            android:id="@+id/txtNombre"
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardNombre"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:drawableStart="@drawable/ic_name"
-            android:text="Kim Doe Mostar"
-            android:padding="10dp"
-            android:layout_marginLeft="95dp"
-            android:textSize="16sp"/>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginEnd="61dp"
+            android:backgroundTint="#f5f5f5"
+            android:padding="29dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp">
 
-        <TextView
-            android:id="@+id/txtEdad"
-            android:layout_below="@id/txtNombre"
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txtNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_name"
+                android:fontFamily="@font/montserrat_medium"
+                android:padding="12dp"
+                android:text="Kim Doe Mostar"
+                android:textSize="16sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardEdad"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:drawableStart="@drawable/ic_edad"
-            android:text="22"
-            android:padding="10dp"
-            android:layout_marginLeft="95dp"
+            android:layout_marginLeft="65dp"
             android:layout_marginTop="5dp"
-            android:textSize="16sp"/>
+            android:backgroundTint="#f5f5f5"
+            android:padding="29dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            android:layout_below="@id/cardNombre">
 
-        <TextView
-            android:id="@+id/txtMail"
-            android:layout_below="@id/txtEdad"
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txtEdad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:drawableStart="@drawable/ic_edad"
+                android:text="22"
+                android:padding="10dp"
+                android:textSize="16sp"/>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardCorreo"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:drawableStart="@drawable/ic_correo"
-            android:text="kim@mail.com"
-            android:padding="10dp"
-            android:layout_marginLeft="95dp"
+            android:layout_marginLeft="65dp"
             android:layout_marginTop="5dp"
-            android:textSize="16sp"/>
+            android:backgroundTint="#f5f5f5"
+            android:padding="29dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            android:layout_below="@id/cardEdad">
+
+            <TextView
+                android:id="@+id/txtMail"
+                android:layout_below="@id/txtEdad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:drawableStart="@drawable/ic_correo"
+                android:text="kim@mail.com"
+                android:padding="10dp"
+                android:textSize="16sp"/>
+        </androidx.cardview.widget.CardView>
 
 
-        <TextView
-            android:id="@+id/txtId"
-            android:layout_below="@id/txtMail"
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardId"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:drawableStart="@drawable/ic_id"
-            android:text="1202547589"
-            android:padding="10dp"
-            android:layout_marginLeft="95dp"
+            android:layout_marginLeft="65dp"
             android:layout_marginTop="5dp"
-            android:textSize="16sp"/>
+            android:backgroundTint="#f5f5f5"
+            android:padding="29dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            android:layout_below="@id/cardCorreo">
 
-        <TextView
-            android:id="@+id/txtPass"
-            android:layout_below="@id/txtId"
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/txtId"
+                android:layout_below="@id/txtMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:drawableStart="@drawable/ic_id"
+                android:text="1202547589"
+                android:padding="10dp"
+
+                android:textSize="16sp"/>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardGenero"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:drawableStart="@drawable/ic_key"
-            android:text="abc123"
-            android:padding="10dp"
-            android:layout_marginLeft="95dp"
+            android:layout_marginLeft="65dp"
             android:layout_marginTop="5dp"
-            android:textSize="16sp"/>
+            android:backgroundTint="#f5f5f5"
+            android:padding="29dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            android:layout_below="@id/cardId">
+
+            <TextView
+                android:id="@+id/txtGenero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:drawableStart="@drawable/ic_age"
+                android:text="Femenino"
+                android:padding="12dp"
+                android:textSize="16sp"/>
+        </androidx.cardview.widget.CardView>
+
+
+
+
 
     </RelativeLayout>
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="50dp">
+        android:layout_marginLeft="135dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#f5f5f5"
+        android:padding="29dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        >
 
+        <TextView
+            android:id="@+id/btnLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:drawableStart="@drawable/ic_logout"
+            android:text="Cerrar sesion"
+            android:padding="12dp"
+            android:textSize="16sp"/>
+    </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/btnActualizar"
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:text="Actualizar"
-            android:drawableLeft="@drawable/ic_pencil"
-            android:backgroundTint="@color/black"
-            android:background="@drawable/rounded_btn"
-            android:textColor="@color/white"
-            android:fontFamily="@font/montserrat_semi_bold"/>
-
-
-    </RelativeLayout>
-
+</RelativeLayout>
 
 
 </LinearLayout>
