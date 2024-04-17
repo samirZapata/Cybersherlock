@@ -5,11 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
     android:layout_margin="10dp">
 
     <RelativeLayout
         android:layout_width="390dp"
         android:layout_height="200dp"
+        android:background="@color/white"
         android:padding="10dp">
 
         <TextView
@@ -31,7 +34,7 @@
             android:text="Ana y Juan solían ser amigos, pero después de una discusión, Juan comenzó a enviarle mensajes de texto abusivos y a publicar " />
 
         <TextView
-            android:id="@+id/txtCardEvidencia"
+            android:id="@+id/txtCardEvidenciaD"
             android:layout_width="268dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtCardDesc"

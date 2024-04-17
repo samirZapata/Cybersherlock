@@ -19,9 +19,9 @@ public interface ApiServices {
             @Path("nombreArchivo") String nombreArchivo
     );
 
-    @GET("api/cases/aux/{correo}")
-    Call<ResponseBody> getCaseByMail(
-            @Path("correo") String correo
+    @GET("api/cases/aux/{createdBy}")
+    Call<ResponseBody> getByMail(
+            @Path("createdBy") String correo
     );
 
     @GET("api/auth/{correo}")

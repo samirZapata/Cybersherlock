@@ -48,7 +48,7 @@ public class Dashboard extends AppCompatActivity {
 
         rcTips();
         rcEvidencias();
-
+        getLetter();
         //-----------------------------------------------------
 
         btnCasos.setOnClickListener((View view)->{
@@ -108,7 +108,7 @@ public class Dashboard extends AppCompatActivity {
     }
 
 
-    private void gotLetter(){
+    private void getLetter(){
         String letter = AppData.getNombre();
         perfil.setText(letter);
     }

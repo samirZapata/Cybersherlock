@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.usbbog.cbs_app.R;
 import com.usbbog.cbs_app.modelHelper.AppData;
 import com.usbbog.cbs_app.modelHelper.CasosHolder;
@@ -39,11 +40,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
 import HelperClasses.HomeAdapter.CAdapter;
 import HelperClasses.HomeAdapter.CasosAdapter;
+import HelperClasses.HomeAdapter.ListCasosAdapter;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,8 +57,10 @@ public class Casos extends AppCompatActivity {
     private static final String TAG = "Casos";
 
     private ApiServices apiService;
-    private CAdapter adapter;
-    private List<CasosHolder> casosList = new ArrayList<CasosHolder>();
+    private ListCasosAdapter adapter;
+    List<CasosHolder> casos = new ArrayList<>();
+
+    private List<JSONObject> casosList = new ArrayList<>();
     CasosHolder casosH;
     ListView listView;
 
@@ -79,13 +84,13 @@ public class Casos extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         //############################################################
 
-        adapter = new CAdapter(this, casosList);
+        adapter = new ListCasosAdapter(this, R.layout.mis_casos_design, casos);
         listView.setAdapter(adapter);
-        getCaseByEmail();
+        getCasos();
 
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            CasosHolder selectedCase = casosList.get(position);
+            //CasosHolder selectedCase = casosList.get(position);
             //Toast.makeText(Casos.this, "Caso seleccionado: " + selectedCase.getNombreCaso(), Toast.LENGTH_SHORT).show();
             // Aquí puedes realizar alguna acción al hacer clic en un elemento de la lista
         });
@@ -98,56 +103,77 @@ public class Casos extends AppCompatActivity {
     }
 
 
-    private void getCaseByEmail(){
+   /* private void getCaseByEmail(){
         apiService = RetrofitClient.getClient().create(ApiServices.class);
         String currentMail = AppData.getCorreo();
 
-        Call<ResponseBody> call = apiService.getCaseByMail(currentMail);
-
+        Call<ResponseBody> call = apiService.getByMail(currentMail);
         call.enqueue(new Callback<ResponseBody>() {
-
-
             @Override
             public void onResponse(retrofit2.Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     try {
 
                         String responseBody = response.body().string();
-
                         Gson gson = new Gson();
-                        JsonObject jsonObject = gson.fromJson(responseBody, JsonObject.class);
+                        JsonElement jsonElement = gson.fromJson(responseBody, JsonElement.class);
 
+                        if (jsonElement.isJsonArray()) {
+                            // Convertir JsonArray a List<JSONObject>
+                            Iterator<JsonElement> iterator = jsonElement.getAsJsonArray().iterator();
+                            while (iterator.hasNext()) {
+                                JsonObject jsonObject = iterator.next().getAsJsonObject();
+                                casosList.add(new JSONObject(jsonObject.toString()));
+                                Log.d(TAG, "Número de casos ( ARRAY ) recibidos: " + casosList.size());
 
-                        JsonArray casosArray = jsonObject.getAsJsonArray("cases");
+                            }
+                        } else if (jsonElement.isJsonObject()) {
+                            // Convertir JsonObject a JSONObject
+                            JsonObject jsonObject = jsonElement.getAsJsonObject();
+                            casosList.add(new JSONObject(jsonObject.toString()));
+                            Log.d(TAG, "Número de casos ( OBJECT ) recibidos: " + casosList.size());
 
-                        for (JsonElement elemento : casosArray) {
-                            JsonObject casos = elemento.getAsJsonObject();
-                            String cName = casos.get("nombreCaso").getAsString();
-                            String cDesc = casos.get("desc").getAsString();
-                            String cEvidencia = casos.get("Evidencias").getAsString();
-                            //casosList.add(new CasosHolder(casosH.setNombreCaso(cName)));
                         }
-                        Log.i(TAG, "Número de casos en la lista: " + casosList.size());
                         adapter.notifyDataSetChanged();
-
-                    }catch (Exception e){
-                        e.printStackTrace();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
                     }
-                }else {
+                } else {
                     Log.i(TAG, "Error en la respuesta: " + response.code());
                 }
-
             }
-
             @Override
             public void onFailure(retrofit2.Call<ResponseBody> call, Throwable t) {
                 Log.e(TAG, "Error de red: " + t.getMessage(), t);
             }
         });
-
-
     }
+*/
+
+
+    private void getCasos(){
+        apiService = RetrofitClient.getClient().create(ApiServices.class);
+        String currentMail = AppData.getCorreo();
+
+        Call<ResponseBody> call = apiService.getByMail(currentMail);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                List<CasosHolder> data = (List<CasosHolder>) response.body();
+                casos.add((CasosHolder) data);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
 
 
     private void handleBtnVerMasClick(CasosHolder item, int position) {

@@ -9,16 +9,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.usbbog.cbs_app.R;
 import com.usbbog.cbs_app.modelHelper.CasosHolder;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
-public class CAdapter extends ArrayAdapter<CasosHolder> {
+public class CAdapter extends ArrayAdapter<JSONObject> {
 
     private LayoutInflater inflater;
 
-    public CAdapter(Context context, List<CasosHolder> casosList) {
+    public CAdapter(Context context, List<JSONObject> casosList) {
         super(context, 0, casosList);
         inflater = LayoutInflater.from(context);
     }
@@ -26,24 +31,36 @@ public class CAdapter extends ArrayAdapter<CasosHolder> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = convertView;
-        if (view == null) {
-            view = inflater.inflate(R.layout.mis_casos_design, parent, false);
+        ViewHolder holder;
+
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.mis_casos_design, parent, false);
+            holder = new ViewHolder();
+            holder.nombreCasoTextView = convertView.findViewById(R.id.txtCardCaso);
+            holder.descTextView = convertView.findViewById(R.id.txtCardDesc);
+            holder.evidenciasTextView = convertView.findViewById(R.id.txtCardEvidenciaD);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        CasosHolder casosHolder = getItem(position);
+        JSONObject caso = getItem(position);
 
-        // Aquí configuras las vistas dentro de cada elemento del ListView
-        TextView nombreCasoTextView = view.findViewById(R.id.txtCardCaso);
-        TextView descTextView = view.findViewById(R.id.txtCardDesc);
-        TextView evidenciasTextView = view.findViewById(R.id.txtCardEvidencia);
-
-        if (casosHolder != null) {
-            nombreCasoTextView.setText(casosHolder.getNombreCaso());
-            descTextView.setText(casosHolder.getDesc());
-            evidenciasTextView.setText(casosHolder.getEvidencias());
+        if (caso != null) {
+            try {
+                holder.nombreCasoTextView.setText(caso.getString("nombreCaso"));
+                holder.descTextView.setText(caso.getString("desc"));
+                // holder.evidenciasTextView.setText(caso.getJSONArray("evidencias").toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
-        return view;
+        return convertView;
+    }
+    static class ViewHolder {
+        TextView nombreCasoTextView;
+        TextView descTextView;
+        TextView evidenciasTextView;
     }
 }
